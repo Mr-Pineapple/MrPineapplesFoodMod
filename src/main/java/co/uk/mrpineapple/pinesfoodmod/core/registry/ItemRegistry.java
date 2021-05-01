@@ -1,6 +1,7 @@
 package co.uk.mrpineapple.pinesfoodmod.core.registry;
 
 import co.uk.mrpineapple.pinesfoodmod.core.PinesFoodMod;
+import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -28,7 +29,8 @@ public class ItemRegistry {
     public static final RegistryObject<Item> RED_CHOCOLATE_BAR = registerChocolateBar("red");
     public static final RegistryObject<Item> BLACK_CHOCOLATE_BAR = registerChocolateBar("black");
 
-
+    public static final RegistryObject<Item> GREEN_APPLE = registerFood("green_apple", FoodList.GREEN_APPLE);
+    public static final RegistryObject<Item> ORANGE = registerFood("orange", FoodList.ORANGE);
 
     public static <I extends Item> RegistryObject<I> registerItem(String name, Supplier<? extends I> supplier) {
         RegistryObject<I> item = ITEMS.register(name, supplier);
@@ -37,6 +39,11 @@ public class ItemRegistry {
 
     public static RegistryObject<Item> registerChocolateBar(String name) {
         RegistryObject<Item> item = ITEMS.register(name + "_chocolate_bar", () -> new Item(new Item.Properties().food(FoodList.CHOCOLATE_BAR).tab(PinesFoodMod.TAB)) );
+        return item;
+    }
+
+    public static RegistryObject<Item> registerFood(String name, Food food) {
+        RegistryObject<Item> item = ITEMS.register(name, () -> new Item(new Item.Properties().food(food).tab(PinesFoodMod.TAB)));
         return item;
     }
 }
