@@ -1,0 +1,31 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="All rights reserved"
+
+[[mods]]
+modId="pinesfoodmod"
+version="${file.jarVersion}"
+#TODO: Change location of JSON URL
+updateJSONURL="https://raw.githubusercontent.com/Mr-Pineapple/ModUpdateJSON/master/toyguns/update.json"
+displayName="Mr. Pineapple's Food Mod"
+logoFile="examplemod.png"
+credits=""
+authors="Mr. Pineapple"
+description='''
+Mr. Pineapple's Food Mod is quite simple...
+
+It adds more food! From chocolate to pizzas, this mod will widen the variety of food in the game and hopefully keep Steve happy!
+'''
+
+[[dependencies.pinesfoodmod]]
+    modId="forge"
+    mandatory=true
+    versionRange="[36,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.pinesfoodmod]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.5,1.17)"
+    ordering="NONE"
+    side="BOTH"
