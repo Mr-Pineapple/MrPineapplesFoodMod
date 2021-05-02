@@ -1,5 +1,6 @@
 package co.uk.mrpineapple.pinesfoodmod.core.registry;
 
+import co.uk.mrpineapple.pinesfoodmod.common.items.BottleBase;
 import co.uk.mrpineapple.pinesfoodmod.core.PinesFoodMod;
 import net.minecraft.block.Block;
 import net.minecraft.item.*;
@@ -47,6 +48,12 @@ public class ItemRegistry {
     public static final RegistryObject<BlockItem> CHERRY = register("cherry_bush", () -> new BlockNamedItem(BlockRegistry.CHERRY.get(), new Item.Properties().tab(PinesFoodMod.TAB).food(FoodList.CHERRY)));
     public static final RegistryObject<BlockItem> BLUEBERRY = register("blueberry_bush", () -> new BlockNamedItem(BlockRegistry.BLUEBERRY.get(), new Item.Properties().tab(PinesFoodMod.TAB).food(FoodList.BLUEBERRY)));
     public static final RegistryObject<BlockItem> PEPPER = register("pepper_bush", () -> new BlockNamedItem(BlockRegistry.PEPPER.get(), new Item.Properties().tab(PinesFoodMod.TAB).food(FoodList.PEPPER)));
+
+    /* Bottles */
+    public static final RegistryObject<Item> WINE = register("wine", BottleBase.WineBottle::new);
+    public static final RegistryObject<Item> MILK_BOTTLE = register("milk_bottle", BottleBase.MilkBottle::new);
+    public static final RegistryObject<Item> CHOCOLATE_SAUCE = register("bottle_of_chocolate_sauce", BottleBase.ChocolateSauceBottle::new);
+
 
     public static RegistryObject<BlockItem> register(String name, RegistryObject<Block> block, Food food) {
         RegistryObject<BlockItem> item = ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(PinesFoodMod.TAB).food(food)));

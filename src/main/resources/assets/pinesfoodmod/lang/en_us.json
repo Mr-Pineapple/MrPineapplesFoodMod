@@ -31,6 +31,10 @@
   "item.pinesfoodmod.blueberry_bush": "Blueberries",
   "item.pinesfoodmod.cherry_bush": "Cherries",
 
+  "item.pinesfoodmod.wine": "Wine",
+  "item.pinesfoodmod.milk_bottle": "Milk Bottle",
+  "item.pinesfoodmod.bottle_of_chocolate_sauce": "Bottle of Chocolate Sauce",
+
   "block.pinesfoodmod.chocolate_cake": "Chocolate Cake",
   "block.pinesfoodmod.glazed_chocolate_cake": "Glazed Chocolate Cake",
   "block.pinesfoodmod.decorated_chocolate_cake": "Decorated Chocolate Cake",

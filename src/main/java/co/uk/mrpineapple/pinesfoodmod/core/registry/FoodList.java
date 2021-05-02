@@ -26,4 +26,8 @@ public class FoodList {
     public static final Food CHERRY = (new Food.Builder()).nutrition(4).saturationMod(0.3f).build();
     public static final Food BLUEBERRY = (new Food.Builder()).nutrition(4).saturationMod(0.3f).build();
     public static final Food PEPPER = (new Food.Builder()).nutrition(4).saturationMod(0.5f).build();
+
+    public static final Food CHOCOLATE_SAUCE = (new Food.Builder()).nutrition(4).saturationMod(0.1F).build();
+    public static final Food WINE = (new Food.Builder()).nutrition(3).saturationMod(0.25f).build();
+    public static final Food MILK_BOTTLE = (new Food.Builder()).nutrition(1).saturationMod(0.3f).build();
 }
