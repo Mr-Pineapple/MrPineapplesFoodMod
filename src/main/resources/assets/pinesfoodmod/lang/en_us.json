@@ -19,5 +19,13 @@
   "item.pinesfoodmod.green_apple": "Green Apple",
   "item.pinesfoodmod.orange": "Orange",
 
+  "block.pinesfoodmod.grapes": "Grapes",
+  "block.pinesfoodmod.corn": "Corn",
+  "block.pinesfoodmod.garlic": "Garlic",
+  "block.pinesfoodmod.onion": "Onion",
+  "block.pinesfoodmod.tomato": "Tomato",
+  "block.pinesfoodmod.olive": "Olive",
+  "block.pinesfoodmod.pineapple": "Pineapple",
+
   "itemGroup.pinesfoodmod": "Mr. Pineapple's Food Mod"
 }

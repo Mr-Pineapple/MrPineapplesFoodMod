@@ -1,0 +1,6 @@
+{
+	"parent": "block/crop",
+	"textures": {
+		"crop": "pinesfoodmod:block/garlic_stage3"
+	}
+}

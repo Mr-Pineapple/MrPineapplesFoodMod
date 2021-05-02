@@ -1,5 +1,7 @@
 package co.uk.mrpineapple.pinesfoodmod.core;
 
+import co.uk.mrpineapple.pinesfoodmod.client.ClientEvents;
+import co.uk.mrpineapple.pinesfoodmod.core.registry.BlockRegistry;
 import co.uk.mrpineapple.pinesfoodmod.core.registry.ItemRegistry;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -23,5 +25,7 @@ public class PinesFoodMod {
         MinecraftForge.EVENT_BUS.register(this);
 
         ItemRegistry.ITEMS.register(bus);
+        BlockRegistry.BLOCKS.register(bus);
+        bus.addListener(ClientEvents::onClientSetup);
     }
 }

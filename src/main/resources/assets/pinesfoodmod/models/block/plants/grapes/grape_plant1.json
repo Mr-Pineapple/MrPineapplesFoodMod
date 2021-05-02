@@ -1,0 +1,6 @@
+{
+	"parent": "block/crop",
+	"textures": {
+		"crop": "pinesfoodmod:block/grape_stage1"
+	}
+}
