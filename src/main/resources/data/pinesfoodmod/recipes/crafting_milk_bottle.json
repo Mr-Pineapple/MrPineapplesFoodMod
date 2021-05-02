@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "B",
+    "M"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:milk_bucket"
+    },
+    "M": {
+      "item": "minecraft:glass_bottle"
+    }
+  },
+  "result": {
+    "item": "pinesfoodmod:milk_bottle",
+    "count": 1
+  }
+}

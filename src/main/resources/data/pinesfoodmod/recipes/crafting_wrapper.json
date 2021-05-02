@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BC"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:string"
+    },
+    "C": {
+      "item": "minecraft:paper"
+    }
+  },
+ 	"result": {
+ 		"item": "pinesfoodmod:wrapper",
+ 		"count": 2
+ 	}
+}

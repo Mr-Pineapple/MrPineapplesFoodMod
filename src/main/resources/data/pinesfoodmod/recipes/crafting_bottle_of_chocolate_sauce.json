@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:glass_bottle"
+    },
+    {
+      "item": "pinesfoodmod:white_chocolate_bar"
+    }
+  ],
+  "result": {
+    "item": "pinesfoodmod:bottle_of_chocolate_sauce"
+  }
+}
