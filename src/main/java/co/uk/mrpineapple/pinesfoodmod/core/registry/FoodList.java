@@ -16,4 +16,10 @@ public class FoodList {
     public static final Food TOMATO = (new Food.Builder().nutrition(2).saturationMod(0.3f).build());
     public static final Food OLIVE = (new Food.Builder().nutrition(2).saturationMod(0.2f).build());
     public static final Food PINEAPPLE = (new Food.Builder().nutrition(2).saturationMod(0.2f).build());
+
+    public static final Food DECORATED_CHOCOLATE_CAKE = new Food.Builder().nutrition(5).saturationMod(0.4f).build();
+    public static final Food CHOCOLATE_CAKE = new Food.Builder().nutrition(2).saturationMod(0.4f).build();
+    public static final Food GLAZED_CHOCOLATE_CAKE = new Food.Builder().nutrition(4).saturationMod(0.4f).build();
+    public static final Food BIRTHDAY_CAKE = new Food.Builder().nutrition(4).saturationMod(0.4f).build();
+    public static final Food RED_VELVET_CAKE = new Food.Builder().nutrition(4).saturationMod(0.4f).build();
 }
