@@ -41,5 +41,8 @@
   "block.pinesfoodmod.birthday_cake": "Birthday Cake",
   "block.pinesfoodmod.red_velvet_cake": "Red Velvet Cake",
 
+  "item.pinesfoodmod.wrapper": "Wrapper",
+  "item.pinesfoodmod.cardboard": "Cardboard",
+
   "itemGroup.pinesfoodmod": "Mr. Pineapple's Food Mod"
 }

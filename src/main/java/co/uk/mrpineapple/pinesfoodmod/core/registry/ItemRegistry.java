@@ -54,6 +54,9 @@ public class ItemRegistry {
     public static final RegistryObject<Item> MILK_BOTTLE = register("milk_bottle", BottleBase.MilkBottle::new);
     public static final RegistryObject<Item> CHOCOLATE_SAUCE = register("bottle_of_chocolate_sauce", BottleBase.ChocolateSauceBottle::new);
 
+    /* Miscellaneous */
+    public static final RegistryObject<Item> WRAPPER = register("wrapper", () -> new Item(new Item.Properties().tab(PinesFoodMod.TAB)));
+    public static final RegistryObject<Item> CARDBOARD = register("cardboard", () -> new Item(new Item.Properties().tab(PinesFoodMod.TAB)));
 
     public static RegistryObject<BlockItem> register(String name, RegistryObject<Block> block, Food food) {
         RegistryObject<BlockItem> item = ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(PinesFoodMod.TAB).food(food)));
