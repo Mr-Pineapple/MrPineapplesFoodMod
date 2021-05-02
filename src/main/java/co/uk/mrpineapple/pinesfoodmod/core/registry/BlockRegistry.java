@@ -1,5 +1,6 @@
 package co.uk.mrpineapple.pinesfoodmod.core.registry;
 
+import co.uk.mrpineapple.pinesfoodmod.common.blocks.BerryBlockBase;
 import co.uk.mrpineapple.pinesfoodmod.common.blocks.CakeBase;
 import co.uk.mrpineapple.pinesfoodmod.common.blocks.CropBase;
 import co.uk.mrpineapple.pinesfoodmod.core.PinesFoodMod;
@@ -29,23 +30,32 @@ public class BlockRegistry {
     public static final RegistryObject<Block> OLIVE = register("olive", () -> new CropBase(ItemRegistry.OLIVE::get, ItemRegistry.OLIVE::get));
     public static final RegistryObject<Block> PINEAPPLE = register("pineapple", () -> new CropBase(ItemRegistry.PINEAPPLE::get, ItemRegistry.PINEAPPLE::get));
 
+    public static final RegistryObject<Block> CHERRY = register("cherry_bush", () -> new BerryBlockBase(ItemRegistry.CHERRY::get, false, false));
+    public static final RegistryObject<Block> BLUEBERRY = register("blueberry_bush", () -> new BerryBlockBase(ItemRegistry.BLUEBERRY::get, false, false));
+    public static final RegistryObject<Block> PEPPER = register("pepper_bush", () -> new BerryBlockBase(ItemRegistry.PEPPER::get, true, false));
+
     public static final RegistryObject<Block> DECORATED_CHOCOLATE_CAKE = register("decorated_chocolate_cake", FoodList.DECORATED_CHOCOLATE_CAKE);
     public static final RegistryObject<Block> CHOCOLATE_CAKE = register("chocolate_cake", FoodList.CHOCOLATE_CAKE);
     public static final RegistryObject<Block> GLAZED_CHOCOLATE_CAKE = register("glazed_chocolate_cake", FoodList.GLAZED_CHOCOLATE_CAKE);
     public static final RegistryObject<Block> BIRTHDAY_CAKE = register("birthday_cake", FoodList.BIRTHDAY_CAKE);
     public static final RegistryObject<Block> RED_VELVET_CAKE = register("red_velvet_cake", FoodList.RED_VELVET_CAKE);
 
+    //For blocks - not registering an item
     public static <B extends Block> RegistryObject<B> register(String name, Supplier<? extends B> supplier) {
         RegistryObject<B> block = BLOCKS.register(name, supplier);
         return block;
     }
 
+    //Registering a block with a normal BlockItem - only with a tab property
+    //Should use alternate methods when needed, likely to be removed.
+    @Deprecated
     public static <B extends Block> RegistryObject<B> register(String name, Supplier<? extends B> supplier, @Nullable ItemGroup group) {
         RegistryObject<B> block = BLOCKS.register(name, supplier);
         ItemRegistry.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(group)));
         return block;
     }
 
+    //Cakes
     public static RegistryObject<Block> register(String name, @Nonnull Food food) {
         RegistryObject<Block> cake = BLOCKS.register(name, () -> new CakeBase(AbstractBlock.Properties.copy(Blocks.CAKE), food));
         ItemRegistry.ITEMS.register(name, () -> new BlockItem(cake.get(), new Item.Properties().tab(PinesFoodMod.TAB)));

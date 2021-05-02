@@ -17,5 +17,9 @@ public class ClientEvents {
         RenderTypeLookup.setRenderLayer(BlockRegistry.TOMATO.get(), cutoutPredicate);
         RenderTypeLookup.setRenderLayer(BlockRegistry.OLIVE.get(), cutoutPredicate);
         RenderTypeLookup.setRenderLayer(BlockRegistry.PINEAPPLE.get(), cutoutPredicate);
+
+        RenderTypeLookup.setRenderLayer(BlockRegistry.CHERRY.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(BlockRegistry.BLUEBERRY.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(BlockRegistry.PEPPER.get(), cutoutPredicate);
     }
 }

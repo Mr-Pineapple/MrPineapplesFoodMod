@@ -2,12 +2,12 @@ package co.uk.mrpineapple.pinesfoodmod.core.registry;
 
 import co.uk.mrpineapple.pinesfoodmod.core.PinesFoodMod;
 import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Food;
-import net.minecraft.item.Item;
+import net.minecraft.item.*;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.function.Supplier;
 
 public class ItemRegistry {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, PinesFoodMod.ID);
@@ -43,6 +43,11 @@ public class ItemRegistry {
     public static final RegistryObject<BlockItem> OLIVE = register("olive", BlockRegistry.OLIVE, FoodList.OLIVE);
     public static final RegistryObject<BlockItem> PINEAPPLE = register("pineapple", BlockRegistry.PINEAPPLE, FoodList.PINEAPPLE);
 
+    /* Bushes */
+    public static final RegistryObject<BlockItem> CHERRY = register("cherry_bush", () -> new BlockNamedItem(BlockRegistry.CHERRY.get(), new Item.Properties().tab(PinesFoodMod.TAB).food(FoodList.CHERRY)));
+    public static final RegistryObject<BlockItem> BLUEBERRY = register("blueberry_bush", () -> new BlockNamedItem(BlockRegistry.BLUEBERRY.get(), new Item.Properties().tab(PinesFoodMod.TAB).food(FoodList.BLUEBERRY)));
+    public static final RegistryObject<BlockItem> PEPPER = register("pepper_bush", () -> new BlockNamedItem(BlockRegistry.PEPPER.get(), new Item.Properties().tab(PinesFoodMod.TAB).food(FoodList.PEPPER)));
+
     public static RegistryObject<BlockItem> register(String name, RegistryObject<Block> block, Food food) {
         RegistryObject<BlockItem> item = ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(PinesFoodMod.TAB).food(food)));
         return item;
@@ -55,6 +60,11 @@ public class ItemRegistry {
 
     public static RegistryObject<Item> register(String name, Food food) {
         RegistryObject<Item> item = ITEMS.register(name, () -> new Item(new Item.Properties().food(food).tab(PinesFoodMod.TAB)));
+        return item;
+    }
+
+    public static <I extends Item> RegistryObject<I> register(String name, Supplier<I> supplier) {
+        RegistryObject<I> item = ITEMS.register(name, supplier);
         return item;
     }
 }

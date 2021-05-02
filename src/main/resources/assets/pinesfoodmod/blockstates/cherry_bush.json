@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "age=0": { "model": "pinesfoodmod:block/plants/cherry/cherry_bush_stage0" },
+        "age=1": { "model": "pinesfoodmod:block/plants/cherry/cherry_bush_stage1" },
+        "age=2": { "model": "pinesfoodmod:block/plants/cherry/cherry_bush_stage2" },
+        "age=3": { "model": "pinesfoodmod:block/plants/cherry/cherry_bush_stage3" }
+    }
+}

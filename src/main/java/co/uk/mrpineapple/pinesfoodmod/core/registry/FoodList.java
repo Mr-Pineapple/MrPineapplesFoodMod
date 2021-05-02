@@ -22,4 +22,8 @@ public class FoodList {
     public static final Food GLAZED_CHOCOLATE_CAKE = new Food.Builder().nutrition(4).saturationMod(0.4f).build();
     public static final Food BIRTHDAY_CAKE = new Food.Builder().nutrition(4).saturationMod(0.4f).build();
     public static final Food RED_VELVET_CAKE = new Food.Builder().nutrition(4).saturationMod(0.4f).build();
+
+    public static final Food CHERRY = (new Food.Builder()).nutrition(4).saturationMod(0.3f).build();
+    public static final Food BLUEBERRY = (new Food.Builder()).nutrition(4).saturationMod(0.3f).build();
+    public static final Food PEPPER = (new Food.Builder()).nutrition(4).saturationMod(0.5f).build();
 }

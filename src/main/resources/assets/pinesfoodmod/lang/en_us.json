@@ -27,5 +27,15 @@
   "block.pinesfoodmod.olive": "Olive",
   "block.pinesfoodmod.pineapple": "Pineapple",
 
+  "item.pinesfoodmod.pepper_bush": "Peppers",
+  "item.pinesfoodmod.blueberry_bush": "Blueberries",
+  "item.pinesfoodmod.cherry_bush": "Cherries",
+
+  "block.pinesfoodmod.chocolate_cake": "Chocolate Cake",
+  "block.pinesfoodmod.glazed_chocolate_cake": "Glazed Chocolate Cake",
+  "block.pinesfoodmod.decorated_chocolate_cake": "Decorated Chocolate Cake",
+  "block.pinesfoodmod.birthday_cake": "Birthday Cake",
+  "block.pinesfoodmod.red_velvet_cake": "Red Velvet Cake",
+
   "itemGroup.pinesfoodmod": "Mr. Pineapple's Food Mod"
 }
