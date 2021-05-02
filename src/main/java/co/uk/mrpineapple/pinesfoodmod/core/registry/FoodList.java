@@ -30,4 +30,10 @@ public class FoodList {
     public static final Food CHOCOLATE_SAUCE = (new Food.Builder()).nutrition(4).saturationMod(0.1F).build();
     public static final Food WINE = (new Food.Builder()).nutrition(3).saturationMod(0.25f).build();
     public static final Food MILK_BOTTLE = (new Food.Builder()).nutrition(1).saturationMod(0.3f).build();
+
+    public static final Food PEPPERONI = (new Food.Builder().nutrition(1).saturationMod(0.2f).build());
+    public static final Food BACON = (new Food.Builder().nutrition(1).saturationMod(0.1f).build());
+    public static final Food COOKED_BACON = (new Food.Builder().nutrition(2).saturationMod(0.2f).build());
+
+    public static final Food CHEESE = (new Food.Builder().nutrition(3).saturationMod(0.3f).build());
 }

@@ -27,6 +27,15 @@
   "block.pinesfoodmod.olive": "Olive",
   "block.pinesfoodmod.pineapple": "Pineapple",
 
+  "item.pinesfoodmod.pepperoni": "Pepperoni",
+  "item.pinesfoodmod.bacon": "Bacon",
+  "item.pinesfoodmod.cooked_bacon": "Cooked Bacon",
+
+  "item.pinesfoodmod.mozzarella_cheese": "Mozzarella Cheese",
+  "item.pinesfoodmod.cheddar_cheese": "Cheddar Cheese",
+  "item.pinesfoodmod.mature_cheddar_cheese": "Mature Cheddar Cheese",
+  "item.pinesfoodmod.ricotta_cheese": "Ricotta Cheese",
+
   "item.pinesfoodmod.pepper_bush": "Peppers",
   "item.pinesfoodmod.blueberry_bush": "Blueberries",
   "item.pinesfoodmod.cherry_bush": "Cherries",
@@ -43,6 +52,11 @@
 
   "item.pinesfoodmod.wrapper": "Wrapper",
   "item.pinesfoodmod.cardboard": "Cardboard",
+
+  "item.pinesfoodmod.flour": "Flour",
+  "item.pinesfoodmod.yeast": "Yeast",
+  "item.pinesfoodmod.salt": "Salt",
+  "item.pinesfoodmod.olive_oil": "Olive Oil",
 
   "itemGroup.pinesfoodmod": "Mr. Pineapple's Food Mod"
 }

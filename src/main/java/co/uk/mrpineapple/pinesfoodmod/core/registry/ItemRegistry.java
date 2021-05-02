@@ -54,9 +54,24 @@ public class ItemRegistry {
     public static final RegistryObject<Item> MILK_BOTTLE = register("milk_bottle", BottleBase.MilkBottle::new);
     public static final RegistryObject<Item> CHOCOLATE_SAUCE = register("bottle_of_chocolate_sauce", BottleBase.ChocolateSauceBottle::new);
 
+    /* Meat */
+    public static final RegistryObject<Item> PEPPERONI = register("pepperoni", FoodList.PEPPERONI);
+    public static final RegistryObject<Item> BACON = register("bacon", FoodList.BACON);
+    public static final RegistryObject<Item> COOKED_BACON = register("cooked_bacon", FoodList.COOKED_BACON);
+
+    /* Cheese */
+    public static final RegistryObject<Item> MOZZARELLA_CHEESE = register("mozzarella_cheese", FoodList.CHEESE);
+    public static final RegistryObject<Item> CHEDDAR_CHEESE  = register("cheddar_cheese", FoodList.CHEESE);
+    public static final RegistryObject<Item> MATURE_CHEDDAR_CHEESE  = register("mature_cheddar_cheese", FoodList.CHEESE);
+    public static final RegistryObject<Item> RICOTTA_CHEESE  = register("ricotta_cheese", () -> new Item(new Item.Properties().tab(PinesFoodMod.TAB).food(FoodList.CHEESE).craftRemainder(Items.BOWL)));
+
     /* Miscellaneous */
     public static final RegistryObject<Item> WRAPPER = register("wrapper", () -> new Item(new Item.Properties().tab(PinesFoodMod.TAB)));
     public static final RegistryObject<Item> CARDBOARD = register("cardboard", () -> new Item(new Item.Properties().tab(PinesFoodMod.TAB)));
+    public static final RegistryObject<Item> FLOUR = register("flour", () -> new Item(new Item.Properties().tab(PinesFoodMod.TAB)));
+    public static final RegistryObject<Item> YEAST = register("yeast", () -> new Item(new Item.Properties().tab(PinesFoodMod.TAB)));
+    public static final RegistryObject<Item> SALT = register("salt", () -> new Item(new Item.Properties().tab(PinesFoodMod.TAB)));
+    public static final RegistryObject<Item> OLIVE_OIL = register("olive_oil", () -> new Item(new Item.Properties().tab(PinesFoodMod.TAB)));
 
     public static RegistryObject<BlockItem> register(String name, RegistryObject<Block> block, Food food) {
         RegistryObject<BlockItem> item = ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(PinesFoodMod.TAB).food(food)));
