@@ -3,6 +3,8 @@ package co.uk.mrpineapple.pinesfoodmod.core;
 import co.uk.mrpineapple.pinesfoodmod.client.ClientEvents;
 import co.uk.mrpineapple.pinesfoodmod.core.registry.BlockRegistry;
 import co.uk.mrpineapple.pinesfoodmod.core.registry.ItemRegistry;
+import co.uk.mrpineapple.pinesfoodmod.core.registry.ScreenHandlerRegistry;
+import co.uk.mrpineapple.pinesfoodmod.core.registry.TileEntityRegistry;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
@@ -26,6 +28,9 @@ public class PinesFoodMod {
 
         ItemRegistry.ITEMS.register(bus);
         BlockRegistry.BLOCKS.register(bus);
+        TileEntityRegistry.TILE_ENTITY.register(bus);
+        ScreenHandlerRegistry.CONTAINERS.register(bus);
+
         bus.addListener(ClientEvents::onClientSetup);
     }
 }

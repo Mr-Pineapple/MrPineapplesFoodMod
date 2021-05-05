@@ -58,5 +58,7 @@
   "item.pinesfoodmod.salt": "Salt",
   "item.pinesfoodmod.olive_oil": "Olive Oil",
 
-  "itemGroup.pinesfoodmod": "Mr. Pineapple's Food Mod"
+  "itemGroup.pinesfoodmod": "Mr. Pineapple's Food Mod",
+
+  "screen.pinesfoodmod.pizza_board.make": "Make"
 }

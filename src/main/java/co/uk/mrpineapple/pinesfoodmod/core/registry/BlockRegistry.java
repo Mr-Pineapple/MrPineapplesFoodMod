@@ -3,6 +3,7 @@ package co.uk.mrpineapple.pinesfoodmod.core.registry;
 import co.uk.mrpineapple.pinesfoodmod.common.blocks.BerryBlockBase;
 import co.uk.mrpineapple.pinesfoodmod.common.blocks.CakeBase;
 import co.uk.mrpineapple.pinesfoodmod.common.blocks.CropBase;
+import co.uk.mrpineapple.pinesfoodmod.common.blocks.PizzaBoardBlock;
 import co.uk.mrpineapple.pinesfoodmod.core.PinesFoodMod;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -39,6 +40,8 @@ public class BlockRegistry {
     public static final RegistryObject<Block> GLAZED_CHOCOLATE_CAKE = register("glazed_chocolate_cake", FoodList.GLAZED_CHOCOLATE_CAKE);
     public static final RegistryObject<Block> BIRTHDAY_CAKE = register("birthday_cake", FoodList.BIRTHDAY_CAKE);
     public static final RegistryObject<Block> RED_VELVET_CAKE = register("red_velvet_cake", FoodList.RED_VELVET_CAKE);
+
+    public static final RegistryObject<Block> PIZZA_BOARD = register("pizza_board", () -> new PizzaBoardBlock(AbstractBlock.Properties.copy(Blocks.OAK_PLANKS)), PinesFoodMod.TAB);
 
     //For blocks - not registering an item
     public static <B extends Block> RegistryObject<B> register(String name, Supplier<? extends B> supplier) {
