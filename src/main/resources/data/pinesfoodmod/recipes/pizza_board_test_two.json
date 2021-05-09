@@ -1,0 +1,25 @@
+{
+    "type": "pinesfoodmod:pizza_board",
+    "inputs": [
+            {
+                "item": "pinesfoodmod:yeast",
+                "count": 2
+            },
+            {
+                "item": "minecraft:apple",
+                "count": 5
+            },
+            {
+                "item": "pinesfoodmod:garlic",
+                "count": 3
+            },
+            {
+                "item": "minecraft:green_dye",
+                "count": 1
+            }
+        ],
+    "result": {
+        "item": "pinesfoodmod:green_apple",
+        "count": 1
+    }
+}

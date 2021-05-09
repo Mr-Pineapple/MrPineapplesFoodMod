@@ -60,5 +60,8 @@
 
   "itemGroup.pinesfoodmod": "Mr. Pineapple's Food Mod",
 
-  "screen.pinesfoodmod.pizza_board.make": "Make"
+  "screen.pinesfoodmod.label.recipe": "Recipe",
+  "screen.pinesfoodmod.label.ingredients": "Ingredients",
+  "screen.pinesfoodmod.button.make": "Make",
+  "screen.pinesfoodmod.button.show_remaining": "Only Show Remaining Items"
 }
