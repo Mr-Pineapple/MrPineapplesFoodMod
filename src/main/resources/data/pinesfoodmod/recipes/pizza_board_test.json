@@ -1,0 +1,25 @@
+{
+    "type": "pinesfoodmod:pizza_board",
+    "inputs": [
+            {
+                "item": "pinesfoodmod:yeast",
+                "count": 2
+            },
+            {
+                "item": "pinesfoodmod:flour",
+                "count": 5
+            },
+            {
+                "item": "pinesfoodmod:salt",
+                "count": 3
+            },
+            {
+                "item": "pinesfoodmod:olive_oil",
+                "count": 1
+            }
+        ],
+    "result": {
+        "item": "pinesfoodmod:grapes",
+        "count": 1
+    }
+}
