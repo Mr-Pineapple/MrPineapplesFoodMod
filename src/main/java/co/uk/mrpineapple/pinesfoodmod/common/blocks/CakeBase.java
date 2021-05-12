@@ -43,7 +43,7 @@ public class CakeBase extends CakeBlock {
             return ActionResultType.PASS;
         } else {
             player.awardStat(Stats.EAT_CAKE_SLICE);
-            player.getFoodData().eat(2, 0.1f);
+            player.getFoodData().eat(nutrition, saturationModifier);
             int i = state.getValue(BITES);
             if(i < 6) {
                 world.setBlock(pos, state.setValue(BITES, i + 1), 3);

@@ -1,9 +1,6 @@
 package co.uk.mrpineapple.pinesfoodmod.core.registry;
 
-import co.uk.mrpineapple.pinesfoodmod.common.blocks.BerryBlockBase;
-import co.uk.mrpineapple.pinesfoodmod.common.blocks.CakeBase;
-import co.uk.mrpineapple.pinesfoodmod.common.blocks.CropBase;
-import co.uk.mrpineapple.pinesfoodmod.common.blocks.PizzaBoardBlock;
+import co.uk.mrpineapple.pinesfoodmod.common.blocks.*;
 import co.uk.mrpineapple.pinesfoodmod.core.PinesFoodMod;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
