@@ -2,6 +2,8 @@ package co.uk.mrpineapple.pinesfoodmod.core.registry;
 
 import co.uk.mrpineapple.pinesfoodmod.common.blocks.*;
 import co.uk.mrpineapple.pinesfoodmod.core.PinesFoodMod;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -15,6 +17,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.function.Supplier;
 
 public class BlockRegistry {
@@ -38,7 +41,12 @@ public class BlockRegistry {
     public static final RegistryObject<Block> BIRTHDAY_CAKE = register("birthday_cake", FoodList.BIRTHDAY_CAKE);
     public static final RegistryObject<Block> RED_VELVET_CAKE = register("red_velvet_cake", FoodList.RED_VELVET_CAKE);
 
-    public static final RegistryObject<Block> PIZZA_BOARD = register("pizza_board", () -> new PizzaBoardBlock(AbstractBlock.Properties.copy(Blocks.OAK_PLANKS)), PinesFoodMod.TAB);
+    public static final RegistryObject<Block> PIZZA_BOARD_ACACIA = register("pizza_board_acacia", () -> new PizzaBoardBlock(AbstractBlock.Properties.copy(Blocks.ACACIA_PLANKS)), PinesFoodMod.TAB);
+    public static final RegistryObject<Block> PIZZA_BOARD_BIRCH = register("pizza_board_birch", () -> new PizzaBoardBlock(AbstractBlock.Properties.copy(Blocks.BIRCH_PLANKS)), PinesFoodMod.TAB);
+    public static final RegistryObject<Block> PIZZA_BOARD_DARK_OAK = register("pizza_board_dark_oak", () -> new PizzaBoardBlock(AbstractBlock.Properties.copy(Blocks.DARK_OAK_PLANKS)), PinesFoodMod.TAB);
+    public static final RegistryObject<Block> PIZZA_BOARD_JUNGLE = register("pizza_board_jungle", () -> new PizzaBoardBlock(AbstractBlock.Properties.copy(Blocks.JUNGLE_PLANKS)), PinesFoodMod.TAB);
+    public static final RegistryObject<Block> PIZZA_BOARD_OAK = register("pizza_board_oak", () -> new PizzaBoardBlock(AbstractBlock.Properties.copy(Blocks.OAK_PLANKS)), PinesFoodMod.TAB);
+    public static final RegistryObject<Block> PIZZA_BOARD_SPRUCE = register("pizza_board_spruce", () -> new PizzaBoardBlock(AbstractBlock.Properties.copy(Blocks.SPRUCE_PLANKS)), PinesFoodMod.TAB);
 
     //For blocks - not registering an item
     public static <B extends Block> RegistryObject<B> register(String name, Supplier<? extends B> supplier) {

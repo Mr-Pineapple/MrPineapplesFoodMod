@@ -1,7 +1,9 @@
 package co.uk.mrpineapple.pinesfoodmod.common.blocks;
 
 import co.uk.mrpineapple.pinesfoodmod.common.tileentity.PizzaBoardTileEntity;
+import co.uk.mrpineapple.pinesfoodmod.common.util.VoxelShapeUtil;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
@@ -13,6 +15,8 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
@@ -24,6 +28,21 @@ import javax.annotation.Nullable;
 public class PizzaBoardBlock extends Block {
     public PizzaBoardBlock(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context) {
+        return VoxelShapeUtil.PIZZA_BOARD;
+    }
+
+    @Override
+    public BlockRenderType getRenderShape(BlockState state) {
+        return BlockRenderType.MODEL;
+    }
+
+    @Override
+    public VoxelShape getOcclusionShape(BlockState state, IBlockReader world, BlockPos pos) {
+        return VoxelShapeUtil.PIZZA_BOARD;
     }
 
     @Override

@@ -14,7 +14,7 @@ import java.util.function.Supplier;
 public class TileEntityRegistry {
     public static final DeferredRegister<TileEntityType<?>> TILE_ENTITY = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, PinesFoodMod.ID);
 
-    public static final RegistryObject<TileEntityType<PizzaBoardTileEntity>> PIZZA_BOARD = register("pizza_board", PizzaBoardTileEntity::new, () -> new Block[]{BlockRegistry.PIZZA_BOARD.get()});
+    public static final RegistryObject<TileEntityType<PizzaBoardTileEntity>> PIZZA_BOARD = register("pizza_board", PizzaBoardTileEntity::new, () -> new Block[]{BlockRegistry.PIZZA_BOARD_ACACIA.get(), BlockRegistry.PIZZA_BOARD_BIRCH.get(), BlockRegistry.PIZZA_BOARD_DARK_OAK.get(), BlockRegistry.PIZZA_BOARD_JUNGLE.get(), BlockRegistry.PIZZA_BOARD_OAK.get(), BlockRegistry.PIZZA_BOARD_SPRUCE.get()});
 
     private static <T extends TileEntity>RegistryObject<TileEntityType<T>> register(String id, Supplier<T> factory, Supplier<Block[]> validBlocks) {
         return TILE_ENTITY.register(id, () -> TileEntityType.Builder.of(factory, validBlocks.get()).build(null));

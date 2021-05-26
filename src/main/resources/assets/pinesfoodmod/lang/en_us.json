@@ -50,6 +50,13 @@
   "block.pinesfoodmod.birthday_cake": "Birthday Cake",
   "block.pinesfoodmod.red_velvet_cake": "Red Velvet Cake",
 
+  "block.pinesfoodmod.pizza_board_acacia": "Acacia Pizza Board",
+  "block.pinesfoodmod.pizza_board_birch": "Birch Pizza Board",
+  "block.pinesfoodmod.pizza_board_dark_oak": "Dark Oak Pizza Board",
+  "block.pinesfoodmod.pizza_board_jungle": "Jungle Pizza Board",
+  "block.pinesfoodmod.pizza_board_oak": "Oak Pizza Board",
+  "block.pinesfoodmod.pizza_board_spruce": "spruce Pizza Board",
+
   "item.pinesfoodmod.wrapper": "Wrapper",
   "item.pinesfoodmod.cardboard": "Cardboard",
 

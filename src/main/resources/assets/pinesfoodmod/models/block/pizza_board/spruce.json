@@ -1,0 +1,6 @@
+{
+  "parent": "pinesfoodmod:block/pizza_board/pizza_board_template",
+  "textures": {
+    "all": "minecraft:block/stripped_spruce_log"
+  }
+}
