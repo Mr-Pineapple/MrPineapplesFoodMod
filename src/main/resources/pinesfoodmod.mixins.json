@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "co.uk.pinelogstudios.pinesfoodmod.core.mixin",
+  "package": "co.uk.mrpineapple.pinesfoodmod.core.mixin",
   "compatibilityLevel": "JAVA_8",
   "minVersion": "0.8",
   "refmap": "minespansion.refmap.json",
