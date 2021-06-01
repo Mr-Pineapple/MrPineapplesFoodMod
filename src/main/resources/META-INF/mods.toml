@@ -1,11 +1,13 @@
 modLoader="javafml"
 loaderVersion="[36,)"
 license="All rights reserved"
+issueTrackerURL="https://github.com/Mr-Pineapple/MrPineapplesFoodMod/issues"
 
 [[mods]]
 modId="pinesfoodmod"
 version="1.2.0"
 updateJSONURL="https://raw.githubusercontent.com/Mr-Pineapple/ModUpdateJSON/master/foodmod/update.json"
+displayURL="https://mr-pineapple.co.uk/"
 displayName="Mr. Pineapple's Food Mod"
 logoFile="foodmod.png"
 credits=""
