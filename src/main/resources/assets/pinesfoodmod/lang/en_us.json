@@ -67,6 +67,8 @@
 
   "itemGroup.pinesfoodmod": "Mr. Pineapple's Food Mod",
 
+  "entity.minecraft.villager.pinesfoodmod.pizza_maker": "Pizza Maker",
+
   "screen.pinesfoodmod.label.recipe": "Recipe",
   "screen.pinesfoodmod.label.ingredients": "Ingredients",
   "screen.pinesfoodmod.button.make": "Make",

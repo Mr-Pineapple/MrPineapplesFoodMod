@@ -34,8 +34,11 @@ public class PinesFoodMod {
         TileEntityRegistry.TILE_ENTITY.register(bus);
         ScreenHandlerRegistry.CONTAINERS.register(bus);
         RecipeSerializerRegistry.RECIPE_SERIALIZER.register(bus);
+        EntityRegistry.PROFESSIONS.register(bus);
+        EntityRegistry.POI_TYPES.register(bus);
 
         bus.addListener(ClientEvents::onClientSetup);
+        bus.addListener(CommonEvents::onCommonSetup);
     }
 
     @SubscribeEvent
