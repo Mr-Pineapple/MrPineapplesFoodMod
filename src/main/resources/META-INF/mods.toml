@@ -4,7 +4,7 @@ license="All rights reserved"
 
 [[mods]]
 modId="pinesfoodmod"
-version="${file.jarVersion}"
+version="1.2.0"
 #TODO: Change location of JSON URL
 updateJSONURL="https://raw.githubusercontent.com/Mr-Pineapple/ModUpdateJSON/master/toyguns/update.json"
 displayName="Mr. Pineapple's Food Mod"
