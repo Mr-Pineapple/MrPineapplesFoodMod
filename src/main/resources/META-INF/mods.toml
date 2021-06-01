@@ -8,7 +8,7 @@ version="${file.jarVersion}"
 #TODO: Change location of JSON URL
 updateJSONURL="https://raw.githubusercontent.com/Mr-Pineapple/ModUpdateJSON/master/toyguns/update.json"
 displayName="Mr. Pineapple's Food Mod"
-logoFile="examplemod.png"
+logoFile="foodmod.png"
 credits=""
 authors="Mr. Pineapple"
 description='''
