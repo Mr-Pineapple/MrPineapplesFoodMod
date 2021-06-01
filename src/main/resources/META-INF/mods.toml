@@ -11,11 +11,7 @@ displayName="Mr. Pineapple's Food Mod"
 logoFile="foodmod.png"
 credits=""
 authors="Mr. Pineapple"
-description='''
-Mr. Pineapple's Food Mod is quite simple...
-
-It adds more food! From chocolate to pizzas, this mod will widen the variety of food in the game and hopefully keep Steve happy!
-'''
+description="Mr. Pineapple's Food Mod is quite simple... It adds more food!\n\nFrom chocolate to pizzas, this mod will widen the variety of food in the game and hopefully keep Steve happy!"
 
 [[dependencies.pinesfoodmod]]
     modId="forge"
