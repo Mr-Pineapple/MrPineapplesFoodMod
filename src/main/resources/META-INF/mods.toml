@@ -13,8 +13,6 @@ logoFile="foodmod.png"
 credits=""
 authors="Mr. Pineapple"
 description="Mr. Pineapple's Food Mod is quite simple... It adds more food!\n\nFrom chocolate to pizzas, this mod will widen the variety of food in the game and hopefully keep Steve happy!"
-itemIcon="pinesfoodmod:pizza_board_oak"
-configBackground="minecraft:textures/block/stripped_birch_log.png"
 
 [[dependencies.pinesfoodmod]]
     modId="forge"
@@ -28,3 +26,7 @@ configBackground="minecraft:textures/block/stripped_birch_log.png"
     versionRange="[1.16.5,1.17)"
     ordering="NONE"
     side="BOTH"
+
+[modproperties.pinesfoodmod]
+    catalogueItemIcon="pinesfoodmod:pizza_board_oak"
+    configuredBackground="minecraft:textures/block/stripped_birch_log.png"
