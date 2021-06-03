@@ -57,6 +57,28 @@
   "block.pinesfoodmod.pizza_board_oak": "Oak Pizza Board",
   "block.pinesfoodmod.pizza_board_spruce": "Spruce Pizza Board",
 
+  "block.pinesfoodmod.pizza_base": "Pizza Base",
+  "block.pinesfoodmod.pizza_tomato_base": "Tomato Pizza",
+  "block.pinesfoodmod.pizza_cheese": "Cheese Pizza",
+  "block.pinesfoodmod.pizza_vegetable": "Vegetable Pizza",
+  "block.pinesfoodmod.pizza_garlic": "Garlic Pizza",
+  "block.pinesfoodmod.pizza_hawaiian": "Hawaiian Pizza",
+  "block.pinesfoodmod.pizza_vegan": "Vegan Pizza",
+  "block.pinesfoodmod.pizza_pepperoni": "Pepperoni Pizza",
+  "block.pinesfoodmod.pizza_seafood": "Seafood Pizza",
+  "block.pinesfoodmod.pizza_ricotta": "Ricotta Cheese Pizza",
+
+  "block.pinesfoodmod.pizza_raw_base": "Raw Pizza Base",
+  "block.pinesfoodmod.pizza_raw_tomato_base": "Raw Tomato Pizza",
+  "block.pinesfoodmod.pizza_raw_cheese": "Raw Cheese Pizza",
+  "block.pinesfoodmod.pizza_raw_vegetable": "Raw Vegetable Pizza",
+  "block.pinesfoodmod.pizza_raw_garlic": "Raw Garlic Pizza",
+  "block.pinesfoodmod.pizza_raw_hawaiian": "Raw Hawaiian Pizza",
+  "block.pinesfoodmod.pizza_raw_vegan": "Raw Vegan Pizza",
+  "block.pinesfoodmod.pizza_raw_pepperoni": "Raw Pepperoni Pizza",
+  "block.pinesfoodmod.pizza_raw_seafood": "Raw Seafood Pizza",
+  "block.pinesfoodmod.pizza_raw_ricotta": "Raw Ricotta Cheese Pizza",
+
   "item.pinesfoodmod.wrapper": "Wrapper",
   "item.pinesfoodmod.cardboard": "Cardboard",
 

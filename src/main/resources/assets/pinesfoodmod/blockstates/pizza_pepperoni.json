@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "slices=0": { "model": "pinesfoodmod:block/pizza/cooked/pepperoni/pizza_pepperoni" },
+        "slices=1": { "model": "pinesfoodmod:block/pizza/cooked/pepperoni/pizza_pepperoni1" },
+        "slices=2": { "model": "pinesfoodmod:block/pizza/cooked/pepperoni/pizza_pepperoni2" },
+        "slices=3": { "model": "pinesfoodmod:block/pizza/cooked/pepperoni/pizza_pepperoni3" }
+    }
+}

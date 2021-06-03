@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "slices=0": { "model": "pinesfoodmod:block/pizza/raw/garlic/pizza_garlic" },
+        "slices=1": { "model": "pinesfoodmod:block/pizza/raw/garlic/pizza_garlic1" },
+        "slices=2": { "model": "pinesfoodmod:block/pizza/raw/garlic/pizza_garlic2" },
+        "slices=3": { "model": "pinesfoodmod:block/pizza/raw/garlic/pizza_garlic3" }
+    }
+}

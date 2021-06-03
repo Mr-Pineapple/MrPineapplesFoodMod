@@ -1,0 +1,7 @@
+{
+    "parent": "pinesfoodmod:block/pizza/misc/template_pizza_bite_1",
+    "textures": {
+        "base": "pinesfoodmod:block/pizza/raw/base",
+        "top": "pinesfoodmod:block/pizza/raw/tomato"
+    }
+}

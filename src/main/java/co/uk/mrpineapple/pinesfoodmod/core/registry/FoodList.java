@@ -36,4 +36,17 @@ public class FoodList {
     public static final Food COOKED_BACON = (new Food.Builder().nutrition(2).saturationMod(0.2f).build());
 
     public static final Food CHEESE = (new Food.Builder().nutrition(3).saturationMod(0.3f).build());
+
+    public static final Food RAW_PIZZA = new Food.Builder().nutrition(0).saturationMod(0.1F).build();
+
+    public static final Food PIZZA_BASE = new Food.Builder().nutrition(2).saturationMod(0.1F).build();
+    public static final Food PIZZA_TOMATO_BASE = new Food.Builder().nutrition(2).saturationMod(0.1F).build();
+    public static final Food PIZZA_CHEESE = new Food.Builder().nutrition(2).saturationMod(0.1F).build();
+    public static final Food PIZZA_VEGETABLE = new Food.Builder().nutrition(4).saturationMod(0.4F).build();
+    public static final Food PIZZA_GARLIC = new Food.Builder().nutrition(2).saturationMod(0.2F).build();
+    public static final Food PIZZA_HAWAIIAN = new Food.Builder().nutrition(5).saturationMod(0.6F).build();
+    public static final Food PIZZA_VEGAN = new Food.Builder().nutrition(3).saturationMod(0.2F).build();
+    public static final Food PIZZA_PEPPERONI = new Food.Builder().nutrition(3).saturationMod(0.15F).build();
+    public static final Food PIZZA_SEAFOOD = new Food.Builder().nutrition(3).saturationMod(0.5F).build();
+    public static final Food PIZZA_RICOTTA = new Food.Builder().nutrition(2).saturationMod(0.25F).build();
 }

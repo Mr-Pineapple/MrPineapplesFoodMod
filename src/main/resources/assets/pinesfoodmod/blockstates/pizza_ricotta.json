@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "slices=0": { "model": "pinesfoodmod:block/pizza/cooked/ricotta/pizza_ricotta" },
+        "slices=1": { "model": "pinesfoodmod:block/pizza/cooked/ricotta/pizza_ricotta1" },
+        "slices=2": { "model": "pinesfoodmod:block/pizza/cooked/ricotta/pizza_ricotta2" },
+        "slices=3": { "model": "pinesfoodmod:block/pizza/cooked/ricotta/pizza_ricotta3" }
+    }
+}

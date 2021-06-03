@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "slices=0": { "model": "pinesfoodmod:block/pizza/raw/seafood/pizza_seafood" },
+        "slices=1": { "model": "pinesfoodmod:block/pizza/raw/seafood/pizza_seafood1" },
+        "slices=2": { "model": "pinesfoodmod:block/pizza/raw/seafood/pizza_seafood2" },
+        "slices=3": { "model": "pinesfoodmod:block/pizza/raw/seafood/pizza_seafood3" }
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "slices=0": { "model": "pinesfoodmod:block/pizza/cooked/cheese/pizza_cheese" },
+        "slices=1": { "model": "pinesfoodmod:block/pizza/cooked/cheese/pizza_cheese1" },
+        "slices=2": { "model": "pinesfoodmod:block/pizza/cooked/cheese/pizza_cheese2" },
+        "slices=3": { "model": "pinesfoodmod:block/pizza/cooked/cheese/pizza_cheese3" }
+    }
+}

@@ -48,15 +48,37 @@ public class BlockRegistry {
     public static final RegistryObject<Block> PIZZA_BOARD_OAK = register("pizza_board_oak", () -> new PizzaBoardBlock(AbstractBlock.Properties.copy(Blocks.OAK_PLANKS)), PinesFoodMod.TAB);
     public static final RegistryObject<Block> PIZZA_BOARD_SPRUCE = register("pizza_board_spruce", () -> new PizzaBoardBlock(AbstractBlock.Properties.copy(Blocks.SPRUCE_PLANKS)), PinesFoodMod.TAB);
 
+    /* Raw Pizzas */
+    public static final RegistryObject<Block> PIZZA_RAW_BASE = register("pizza_raw_base", () -> new PizzaBlock(FoodList.RAW_PIZZA), PinesFoodMod.TAB);
+    public static final RegistryObject<Block> PIZZA_RAW_TOMATO_BASE = register("pizza_raw_tomato_base", () -> new PizzaBlock(FoodList.RAW_PIZZA), PinesFoodMod.TAB);
+    public static final RegistryObject<Block> PIZZA_RAW_CHEESE = register("pizza_raw_cheese", () -> new PizzaBlock(FoodList.RAW_PIZZA), PinesFoodMod.TAB);
+    public static final RegistryObject<Block> PIZZA_RAW_VEGETABLE = register("pizza_raw_vegetable", () -> new PizzaBlock(FoodList.RAW_PIZZA), PinesFoodMod.TAB);
+    public static final RegistryObject<Block> PIZZA_RAW_GARLIC = register("pizza_raw_garlic", () -> new PizzaBlock(FoodList.RAW_PIZZA), PinesFoodMod.TAB);
+    public static final RegistryObject<Block> PIZZA_RAW_HAWAIIAN = register("pizza_raw_hawaiian", () -> new PizzaBlock(FoodList.RAW_PIZZA), PinesFoodMod.TAB);
+    public static final RegistryObject<Block> PIZZA_RAW_VEGAN = register("pizza_raw_vegan", () -> new PizzaBlock(FoodList.RAW_PIZZA), PinesFoodMod.TAB);
+    public static final RegistryObject<Block> PIZZA_RAW_PEPPERONI = register("pizza_raw_pepperoni", () -> new PizzaBlock(FoodList.RAW_PIZZA), PinesFoodMod.TAB);
+    public static final RegistryObject<Block> PIZZA_RAW_SEAFOOD = register("pizza_raw_seafood", () -> new PizzaBlock(FoodList.RAW_PIZZA), PinesFoodMod.TAB);
+    public static final RegistryObject<Block> PIZZA_RAW_RICOTTA = register("pizza_raw_ricotta", () -> new PizzaBlock(FoodList.RAW_PIZZA), PinesFoodMod.TAB);
+
+    /* Cooked Pizzas */
+    public static final RegistryObject<Block> PIZZA_BASE = register("pizza_base", () -> new PizzaBlock(FoodList.PIZZA_BASE), PinesFoodMod.TAB);
+    public static final RegistryObject<Block> PIZZA_TOMATO_BASE = register("pizza_tomato_base", () -> new PizzaBlock(FoodList.PIZZA_TOMATO_BASE), PinesFoodMod.TAB);
+    public static final RegistryObject<Block> PIZZA_CHEESE = register("pizza_cheese", () -> new PizzaBlock(FoodList.PIZZA_CHEESE), PinesFoodMod.TAB);
+    public static final RegistryObject<Block> PIZZA_VEGETABLE = register("pizza_vegetable", () -> new PizzaBlock(FoodList.PIZZA_VEGETABLE), PinesFoodMod.TAB);
+    public static final RegistryObject<Block> PIZZA_GARLIC = register("pizza_garlic", () -> new PizzaBlock(FoodList.PIZZA_GARLIC), PinesFoodMod.TAB);
+    public static final RegistryObject<Block> PIZZA_HAWAIIAN = register("pizza_hawaiian", () -> new PizzaBlock(FoodList.PIZZA_HAWAIIAN), PinesFoodMod.TAB);
+    public static final RegistryObject<Block> PIZZA_VEGAN = register("pizza_vegan", () -> new PizzaBlock(FoodList.PIZZA_VEGAN), PinesFoodMod.TAB);
+    public static final RegistryObject<Block> PIZZA_PEPPERONI = register("pizza_pepperoni", () -> new PizzaBlock(FoodList.PIZZA_PEPPERONI), PinesFoodMod.TAB);
+    public static final RegistryObject<Block> PIZZA_SEAFOOD = register("pizza_seafood", () -> new PizzaBlock(FoodList.PIZZA_SEAFOOD), PinesFoodMod.TAB);
+    public static final RegistryObject<Block> PIZZA_RICOTTA = register("pizza_ricotta", () -> new PizzaBlock(FoodList.PIZZA_RICOTTA), PinesFoodMod.TAB);
+
     //For blocks - not registering an item
     public static <B extends Block> RegistryObject<B> register(String name, Supplier<? extends B> supplier) {
         RegistryObject<B> block = BLOCKS.register(name, supplier);
         return block;
     }
 
-    //Registering a block with a normal BlockItem - only with a tab property
-    //Should use alternate methods when needed, likely to be removed.
-    @Deprecated
+    //For Blocks, with normal BlockItem
     public static <B extends Block> RegistryObject<B> register(String name, Supplier<? extends B> supplier, @Nullable ItemGroup group) {
         RegistryObject<B> block = BLOCKS.register(name, supplier);
         ItemRegistry.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(group)));

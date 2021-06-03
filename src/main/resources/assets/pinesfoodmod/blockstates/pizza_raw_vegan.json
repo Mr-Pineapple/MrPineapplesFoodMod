@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "slices=0": { "model": "pinesfoodmod:block/pizza/raw/vegan/pizza_vegan" },
+        "slices=1": { "model": "pinesfoodmod:block/pizza/raw/vegan/pizza_vegan1" },
+        "slices=2": { "model": "pinesfoodmod:block/pizza/raw/vegan/pizza_vegan2" },
+        "slices=3": { "model": "pinesfoodmod:block/pizza/raw/vegan/pizza_vegan3" }
+    }
+}

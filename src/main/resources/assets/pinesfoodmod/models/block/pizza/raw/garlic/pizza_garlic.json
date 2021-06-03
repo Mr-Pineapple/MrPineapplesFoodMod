@@ -1,0 +1,7 @@
+{
+    "parent": "pinesfoodmod:block/pizza/misc/template_pizza",
+    "textures": {
+        "base": "pinesfoodmod:block/pizza/raw/base",
+        "top": "pinesfoodmod:block/pizza/raw/garlic"
+    }
+}

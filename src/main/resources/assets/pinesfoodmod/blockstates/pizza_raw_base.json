@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "slices=0": { "model": "pinesfoodmod:block/pizza/raw/base/pizza_base" },
+        "slices=1": { "model": "pinesfoodmod:block/pizza/raw/base/pizza_base1" },
+        "slices=2": { "model": "pinesfoodmod:block/pizza/raw/base/pizza_base2" },
+        "slices=3": { "model": "pinesfoodmod:block/pizza/raw/base/pizza_base3" }
+    }
+}

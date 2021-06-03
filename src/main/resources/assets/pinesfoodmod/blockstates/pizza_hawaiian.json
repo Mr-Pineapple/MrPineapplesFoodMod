@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "slices=0": { "model": "pinesfoodmod:block/pizza/cooked/hawaiian/pizza_hawaiian" },
+        "slices=1": { "model": "pinesfoodmod:block/pizza/cooked/hawaiian/pizza_hawaiian1" },
+        "slices=2": { "model": "pinesfoodmod:block/pizza/cooked/hawaiian/pizza_hawaiian2" },
+        "slices=3": { "model": "pinesfoodmod:block/pizza/cooked/hawaiian/pizza_hawaiian3" }
+    }
+}

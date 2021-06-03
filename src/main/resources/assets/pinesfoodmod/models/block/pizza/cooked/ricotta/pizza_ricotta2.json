@@ -1,0 +1,7 @@
+{
+    "parent": "pinesfoodmod:block/pizza/misc/template_pizza_bite_2",
+    "textures": {
+        "base": "pinesfoodmod:block/pizza/cooked/base",
+        "top": "pinesfoodmod:block/pizza/cooked/ricotta"
+    }
+}
