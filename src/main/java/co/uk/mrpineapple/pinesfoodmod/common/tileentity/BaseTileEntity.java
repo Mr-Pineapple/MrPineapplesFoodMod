@@ -38,7 +38,7 @@ public class BaseTileEntity extends TileEntity {
 
     @Override
     public SUpdateTileEntityPacket getUpdatePacket() {
-        return new SUpdateTileEntityPacket(getBlockPos(), 0, getUpdateTag());
+        return new SUpdateTileEntityPacket(this.worldPosition, 0, this.getUpdateTag());
     }
 
     @Override
