@@ -72,6 +72,8 @@ public class BlockRegistry {
     public static final RegistryObject<Block> PIZZA_SEAFOOD = register("pizza_seafood", () -> new PizzaBlock(FoodList.PIZZA_SEAFOOD), PinesFoodMod.TAB);
     public static final RegistryObject<Block> PIZZA_RICOTTA = register("pizza_ricotta", () -> new PizzaBlock(FoodList.PIZZA_RICOTTA), PinesFoodMod.TAB);
 
+    public static final RegistryObject<Block> PIZZA_OVEN = register("brick_pizza_oven", () -> new PizzaOvenBlock(AbstractBlock.Properties.copy(Blocks.BRICKS)), PinesFoodMod.TAB);
+
     //For blocks - not registering an item
     public static <B extends Block> RegistryObject<B> register(String name, Supplier<? extends B> supplier) {
         RegistryObject<B> block = BLOCKS.register(name, supplier);
