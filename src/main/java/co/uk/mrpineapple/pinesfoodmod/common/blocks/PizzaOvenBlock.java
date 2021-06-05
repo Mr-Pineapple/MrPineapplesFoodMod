@@ -70,7 +70,7 @@ public class PizzaOvenBlock extends Block implements ISidedInventoryProvider {
 
     @Override
     public boolean hasTileEntity(BlockState state) {
-        return false;
+        return true;
     }
 
     @Nullable
