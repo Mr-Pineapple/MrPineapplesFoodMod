@@ -1,8 +1,11 @@
 package co.uk.mrpineapple.pinesfoodmod.client;
 
+import co.uk.mrpineapple.pinesfoodmod.client.renderer.tileentity.PizzaOvenTileEntityRenderer;
 import co.uk.mrpineapple.pinesfoodmod.core.registry.BlockRegistry;
+import co.uk.mrpineapple.pinesfoodmod.core.registry.TileEntityRegistry;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 import java.util.function.Predicate;
@@ -23,5 +26,7 @@ public class ClientEvents {
         RenderTypeLookup.setRenderLayer(BlockRegistry.PEPPER.get(), cutoutPredicate);
 
         Screens.screens();
+
+        ClientRegistry.bindTileEntityRenderer(TileEntityRegistry.PIZZA_OVEN.get(), PizzaOvenTileEntityRenderer::new);
     }
 }
