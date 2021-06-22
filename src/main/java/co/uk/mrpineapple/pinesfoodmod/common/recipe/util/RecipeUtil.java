@@ -1,5 +1,6 @@
 package co.uk.mrpineapple.pinesfoodmod.common.recipe.util;
 
+import co.uk.mrpineapple.pinesfoodmod.common.recipe.PizzaOvenRecipe;
 import co.uk.mrpineapple.pinesfoodmod.common.recipe.PizzaRecipe;
 import co.uk.mrpineapple.pinesfoodmod.core.PinesFoodMod;
 import net.minecraft.item.crafting.IRecipe;
@@ -33,6 +34,7 @@ public class RecipeUtil {
     }
 
     public static final IRecipeType<PizzaRecipe> PIZZA = register(PinesFoodMod.ID + ":pizza_board");
+    public static final IRecipeType<PizzaOvenRecipe> PIZZA_OVEN = register(PinesFoodMod.ID + ":pizza_oven");
 
     static <T extends IRecipe<?>> IRecipeType<T> register(final String key) {
         return Registry.register(Registry.RECIPE_TYPE, new ResourceLocation(key), new IRecipeType<T>() {

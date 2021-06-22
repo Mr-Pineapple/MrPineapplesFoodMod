@@ -1,5 +1,6 @@
 package co.uk.mrpineapple.pinesfoodmod.common.blocks;
 
+import co.uk.mrpineapple.pinesfoodmod.common.recipe.PizzaOvenRecipe;
 import co.uk.mrpineapple.pinesfoodmod.common.tileentity.PizzaOvenTileEntity;
 import co.uk.mrpineapple.pinesfoodmod.common.util.VoxelShapeUtil;
 import net.minecraft.block.Block;
@@ -10,6 +11,8 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ISidedInventoryProvider;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
@@ -24,6 +27,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
+import java.util.Optional;
 
 public class PizzaOvenBlock extends Block implements ISidedInventoryProvider {
     public static final DirectionProperty FACING = HorizontalBlock.FACING;
@@ -65,7 +69,31 @@ public class PizzaOvenBlock extends Block implements ISidedInventoryProvider {
 
     @Override
     public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
-        return super.use(state, world, pos, player, hand, result);
+        if(!world.isClientSide && result.getDirection() == Direction.UP || result.getDirection() == state.getValue(FACING)) {
+            TileEntity tileEntity = world.getBlockEntity(pos);
+            if (tileEntity instanceof PizzaOvenTileEntity) {
+                PizzaOvenTileEntity ovenTileEntity = (PizzaOvenTileEntity) tileEntity;
+                ItemStack stack = player.getItemInHand(hand);
+                if (stack.getItem() == Items.COAL || stack.getItem() == Items.CHARCOAL) {
+                    if (ovenTileEntity.addFuel(stack)) {
+                        stack.shrink(1);
+                    }
+                } else if (!stack.isEmpty()) {
+                    Optional<PizzaOvenRecipe> optional = ovenTileEntity.findMatchingRecipe(stack);
+                    if (optional.isPresent()) {
+                        PizzaOvenRecipe recipe = optional.get();
+                        if (ovenTileEntity.addItem(stack, 0, recipe.getCookingTime(), recipe.getExperience())) {
+                            if (!player.abilities.instabuild) {
+                                stack.shrink(1);
+                            }
+                        }
+                    }
+                } else {
+                    ovenTileEntity.removeItem(player);
+                }
+            }
+        }
+        return ActionResultType.SUCCESS;
     }
 
     @Override
