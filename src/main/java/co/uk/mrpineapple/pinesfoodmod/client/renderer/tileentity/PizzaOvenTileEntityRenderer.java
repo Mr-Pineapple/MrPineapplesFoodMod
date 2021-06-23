@@ -26,7 +26,7 @@ public class PizzaOvenTileEntityRenderer extends TileEntityRenderer<PizzaOvenTil
     }
 
     @Override
-    public void render(PizzaOvenTileEntity tileEntity, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer renderTypeBuffer, int i, int i1) {
+    public void render(PizzaOvenTileEntity tileEntity, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer renderTypeBuffer, int combinedLight, int combinedOverlay) {
         NonNullList<ItemStack> oven = tileEntity.getOven();
         ItemStack stack = oven.get(0);
         if(!stack.isEmpty()) {
@@ -38,7 +38,7 @@ public class PizzaOvenTileEntityRenderer extends TileEntityRenderer<PizzaOvenTil
                 matrixStack.translate(0, -0.1, 0.0);
                 matrixStack.scale(0.9F, 0.9F, 0.9F);
 
-                Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemCameraTransforms.TransformType.FIXED, i, i1, matrixStack, renderTypeBuffer);
+                Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemCameraTransforms.TransformType.FIXED, combinedLight, combinedOverlay, matrixStack, renderTypeBuffer);
 
                 matrixStack.popPose();
             } else if(tileEntity.getBlockState() == getBlockState(BlockRegistry.PIZZA_OVEN, Direction.EAST) /*|| tileEntity.getBlockState() == getBlockState(BlockList.PIZZA_OVEN, Direction.EAST)*/) {
@@ -47,7 +47,7 @@ public class PizzaOvenTileEntityRenderer extends TileEntityRenderer<PizzaOvenTil
                 matrixStack.translate(0, -0.2 + 0.4 * 0.5, 0.0);
                 matrixStack.scale(0.9F, 0.9F, 0.9F);
 
-                Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemCameraTransforms.TransformType.FIXED, i, i1, matrixStack, renderTypeBuffer);
+                Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemCameraTransforms.TransformType.FIXED, combinedLight, combinedOverlay, matrixStack, renderTypeBuffer);
 
                 matrixStack.popPose();
             } else if(tileEntity.getBlockState() == getBlockState(BlockRegistry.PIZZA_OVEN, Direction.SOUTH) /*|| tileEntity.getBlockState() == getBlockState(BlockList.PIZZA_OVEN, Direction.SOUTH)*/) {
@@ -56,7 +56,7 @@ public class PizzaOvenTileEntityRenderer extends TileEntityRenderer<PizzaOvenTil
                 matrixStack.translate(0, -0.2 + 0.4 * 0.5, 0.0);
                 matrixStack.scale(0.9F, 0.9F, 0.9F);
 
-                Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemCameraTransforms.TransformType.FIXED, i, i1, matrixStack, renderTypeBuffer);
+                Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemCameraTransforms.TransformType.FIXED, combinedLight, combinedOverlay, matrixStack, renderTypeBuffer);
 
                 matrixStack.popPose();
             } else if(tileEntity.getBlockState() == getBlockState(BlockRegistry.PIZZA_OVEN, Direction.WEST) /*|| tileEntity.getBlockState() == getBlockState(BlockList.PIZZA_OVEN, Direction.WEST)*/) {
@@ -66,7 +66,7 @@ public class PizzaOvenTileEntityRenderer extends TileEntityRenderer<PizzaOvenTil
                 matrixStack.scale(0.9F, 0.9F, 0.9F);
 
 
-                Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemCameraTransforms.TransformType.FIXED, i, i1, matrixStack, renderTypeBuffer);
+                Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemCameraTransforms.TransformType.FIXED, combinedLight, combinedOverlay, matrixStack, renderTypeBuffer);
 
                 matrixStack.popPose();
             }
