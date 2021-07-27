@@ -69,28 +69,25 @@ public class PizzaOvenBlock extends Block implements ISidedInventoryProvider {
 
     @Override
     public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
-        if(!world.isClientSide && result.getDirection() == Direction.UP || result.getDirection() == state.getValue(FACING)) {
-            TileEntity tileEntity = world.getBlockEntity(pos);
-            if (tileEntity instanceof PizzaOvenTileEntity) {
-                PizzaOvenTileEntity ovenTileEntity = (PizzaOvenTileEntity) tileEntity;
-                ItemStack stack = player.getItemInHand(hand);
-                if (stack.getItem() == Items.COAL || stack.getItem() == Items.CHARCOAL) {
-                    if (ovenTileEntity.addFuel(stack)) {
+        TileEntity tileEntity = world.getBlockEntity(pos);
+        if(tileEntity instanceof PizzaOvenTileEntity) {
+            PizzaOvenTileEntity ovenTileEntity = (PizzaOvenTileEntity) tileEntity;
+            ItemStack stack = player.getItemInHand(hand);
+            if(stack.getItem() == Items.COAL || stack.getItem() == Items.CHARCOAL) {
+                if(ovenTileEntity.addFuel(stack)) {
+                    stack.shrink(1);
+                }
+            }
+            else if(!stack.isEmpty()) {
+                Optional<PizzaOvenRecipe> optional = ovenTileEntity.findMatchingRecipe(stack);
+                if(optional.isPresent()) {
+                    PizzaOvenRecipe recipe = optional.get();
+                    if(ovenTileEntity.addItem(stack, 0, recipe.getCookingTime(), recipe.getExperience())) {
                         stack.shrink(1);
                     }
-                } else if (!stack.isEmpty()) {
-                    Optional<PizzaOvenRecipe> optional = ovenTileEntity.findMatchingRecipe(stack);
-                    if (optional.isPresent()) {
-                        PizzaOvenRecipe recipe = optional.get();
-                        if (ovenTileEntity.addItem(stack, 0, recipe.getCookingTime(), recipe.getExperience())) {
-                            if (!player.abilities.instabuild) {
-                                stack.shrink(1);
-                            }
-                        }
-                    }
-                } else {
-                    ovenTileEntity.removeItem(player);
                 }
+            } else {
+                ovenTileEntity.removeItem(0);
             }
         }
         return ActionResultType.SUCCESS;
