@@ -3,7 +3,6 @@ package co.uk.mrpineapple.pinesfoodmod.client.screens.components;
 import co.uk.mrpineapple.pinesfoodmod.core.PinesFoodMod;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.datafixers.types.templates.Check;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.client.resources.I18n;

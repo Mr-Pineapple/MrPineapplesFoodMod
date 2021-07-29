@@ -2,7 +2,6 @@ package co.uk.mrpineapple.pinesfoodmod.client.renderer.tileentity;
 
 import co.uk.mrpineapple.pinesfoodmod.common.blocks.PizzaOvenBlock;
 import co.uk.mrpineapple.pinesfoodmod.common.tileentity.PizzaOvenTileEntity;
-import co.uk.mrpineapple.pinesfoodmod.core.registry.BlockRegistry;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
