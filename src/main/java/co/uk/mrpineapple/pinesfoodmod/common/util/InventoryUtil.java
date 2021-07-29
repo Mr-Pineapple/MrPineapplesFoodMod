@@ -52,7 +52,7 @@ public class InventoryUtil {
         }
     }
 
-    public static void loadAllItems(String key, CompoundNBT tag, NonNullList<ItemStack> list) {
+    public static void loadAllItemsWithKey(String key, CompoundNBT tag, NonNullList<ItemStack> list) {
         ListNBT listTag = tag.getList(key, Constants.NBT.TAG_COMPOUND);
         for(int i = 0; i < listTag.size(); i++) {
             CompoundNBT slotCompound = listTag.getCompound(i);
@@ -63,11 +63,11 @@ public class InventoryUtil {
         }
     }
 
-    public static CompoundNBT saveAllItems(String key, CompoundNBT tag, NonNullList<ItemStack> list) {
-        return saveAllItems(key, tag, list, true);
+    public static CompoundNBT saveAllItemsWithKey(String key, CompoundNBT tag, NonNullList<ItemStack> list) {
+        return saveAllItemsWithKey(key, tag, list, true);
     }
 
-    public static CompoundNBT saveAllItems(String key, CompoundNBT tag, NonNullList<ItemStack> list, boolean saveEmpty) {
+    public static CompoundNBT saveAllItemsWithKey(String key, CompoundNBT tag, NonNullList<ItemStack> list, boolean saveEmpty) {
         ListNBT listTag = new ListNBT();
         for(int i = 0; i < list.size(); ++i) {
             ItemStack stack = list.get(i);
