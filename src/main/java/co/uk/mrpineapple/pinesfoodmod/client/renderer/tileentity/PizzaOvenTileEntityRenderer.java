@@ -26,53 +26,39 @@ public class PizzaOvenTileEntityRenderer extends TileEntityRenderer<PizzaOvenTil
     }
 
     @Override
-    public void render(PizzaOvenTileEntity tileEntity, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer renderTypeBuffer, int combinedLight, int combinedOverlay) {
+    public void render(PizzaOvenTileEntity tileEntity, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer renderBuffer, int combinedLight, int combinedOverlay) {
         NonNullList<ItemStack> oven = tileEntity.getOven();
-        ItemStack stack = oven.get(0);
-        if(!stack.isEmpty()) {
+        ItemStack ovenStack = oven.get(0);
+        if(!ovenStack.isEmpty()) {
             matrixStack.pushPose();
-
-            if(tileEntity.getBlockState() == getBlockState(BlockRegistry.PIZZA_OVEN, Direction.NORTH) /*|| tileEntity.getBlockState() == getBlockState(BlockList.PIZZA_OVEN, Direction.NORTH)*/) {
                 matrixStack.translate(0.5, 0.54, 0.51);
                 matrixStack.mulPose(Vector3f.XP.rotationDegrees(90F));
                 matrixStack.translate(0, -0.1, 0.0);
                 matrixStack.scale(0.9F, 0.9F, 0.9F);
+                matrixStack.mulPose(Vector3f.ZP.rotationDegrees(90F));
+                Minecraft.getInstance().getItemRenderer().renderStatic(ovenStack, ItemCameraTransforms.TransformType.FIXED, combinedLight, combinedOverlay, matrixStack, renderBuffer);
+            matrixStack.popPose();
+        }
 
-                Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemCameraTransforms.TransformType.FIXED, combinedLight, combinedOverlay, matrixStack, renderTypeBuffer);
-
-                matrixStack.popPose();
-            } else if(tileEntity.getBlockState() == getBlockState(BlockRegistry.PIZZA_OVEN, Direction.EAST) /*|| tileEntity.getBlockState() == getBlockState(BlockList.PIZZA_OVEN, Direction.EAST)*/) {
-                matrixStack.translate(0.59, 0.54, 0.7);
-                matrixStack.mulPose(Vector3f.XP.rotationDegrees(90F));
-                matrixStack.translate(0, -0.2 + 0.4 * 0.5, 0.0);
-                matrixStack.scale(0.9F, 0.9F, 0.9F);
-
-                Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemCameraTransforms.TransformType.FIXED, combinedLight, combinedOverlay, matrixStack, renderTypeBuffer);
-
-                matrixStack.popPose();
-            } else if(tileEntity.getBlockState() == getBlockState(BlockRegistry.PIZZA_OVEN, Direction.SOUTH) /*|| tileEntity.getBlockState() == getBlockState(BlockList.PIZZA_OVEN, Direction.SOUTH)*/) {
-                matrixStack.translate(0.5, 0.54, 0.79);
-                matrixStack.mulPose(Vector3f.XP.rotationDegrees(90F));
-                matrixStack.translate(0, -0.2 + 0.4 * 0.5, 0.0);
-                matrixStack.scale(0.9F, 0.9F, 0.9F);
-
-                Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemCameraTransforms.TransformType.FIXED, combinedLight, combinedOverlay, matrixStack, renderTypeBuffer);
-
-                matrixStack.popPose();
-            } else if(tileEntity.getBlockState() == getBlockState(BlockRegistry.PIZZA_OVEN, Direction.WEST) /*|| tileEntity.getBlockState() == getBlockState(BlockList.PIZZA_OVEN, Direction.WEST)*/) {
-                matrixStack.translate(0.41, 0.54, 0.7);
-                matrixStack.mulPose(Vector3f.XP.rotationDegrees(90F));
-                matrixStack.translate(0, -0.2 + 0.4 * 0.5, 0.0);
-                matrixStack.scale(0.9F, 0.9F, 0.9F);
-
-
-                Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemCameraTransforms.TransformType.FIXED, combinedLight, combinedOverlay, matrixStack, renderTypeBuffer);
-
+        NonNullList<ItemStack> fuel = tileEntity.getFuel();
+        for(int j = 0; j < fuel.size(); ++j) {
+            ItemStack fuelStack = fuel.get(j);
+            if(!fuelStack.isEmpty()) {
+                matrixStack.pushPose();
+                    matrixStack.translate(0.5, 0.1, 0.5);
+                    matrixStack.mulPose(Vector3f.XP.rotationDegrees(90F));
+                    matrixStack.translate(-0.2 + 0.2 * (j % 3), -0.2 + 0.2 * (j / 3), 0.0);
+                    matrixStack.scale(0.375F, 0.375F, 0.375F);
+                    matrixStack.mulPose(Vector3f.YP.rotationDegrees(10F));
+                    matrixStack.mulPose(Vector3f.ZP.rotationDegrees(10F));
+                    matrixStack.mulPose(Vector3f.XP.rotationDegrees(5F));
+                    Minecraft.getInstance().getItemRenderer().renderStatic(fuelStack, ItemCameraTransforms.TransformType.FIXED, combinedLight, combinedOverlay, matrixStack, renderBuffer);
                 matrixStack.popPose();
             }
         }
     }
 
+    /* Used to check direction of pizza oven to rotate renderer - not implemented as of yet */
     static BlockState getBlockState(RegistryObject<Block> block, Direction direction) {
         return block.get().getBlock().defaultBlockState().setValue(PizzaOvenBlock.FACING, direction);
     }
