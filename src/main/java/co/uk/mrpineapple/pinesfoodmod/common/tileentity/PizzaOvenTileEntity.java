@@ -81,8 +81,8 @@ public class PizzaOvenTileEntity extends BaseTileEntity implements IClearable, I
         /* Send updates to client */
         CompoundNBT compound = new CompoundNBT();
         this.writeItems(compound);
-        this.writeCookingTimes(compound);
-        this.writeCookingTotalTimes(compound);
+        this.writeCookingTime(compound);
+        this.writeCookingTotalTime(compound);
         TileEntityUtil.sendUpdatePacket(this, super.save(compound));
     }
 
@@ -152,7 +152,7 @@ public class PizzaOvenTileEntity extends BaseTileEntity implements IClearable, I
             }
 
             if(canCook && this.remainingFuel > 0) {
-                this.cookItems();
+                this.cookContents();
                 this.remainingFuel--;
                 if(this.remainingFuel == 0) {
                     /* Send updates to client */
@@ -162,7 +162,7 @@ public class PizzaOvenTileEntity extends BaseTileEntity implements IClearable, I
                 }
             }
         } else {
-            this.spawnParticles();
+            createParticleEffects();
         }
     }
 
@@ -170,7 +170,7 @@ public class PizzaOvenTileEntity extends BaseTileEntity implements IClearable, I
         return !this.oven.get(0).isEmpty() && this.cookingTime != this.cookingTotalTime;
     }
 
-    private void cookItems() {
+    private void cookContents() {
         boolean itemsChanged = false;
         for(int i = 0; i < this.oven.size(); i++) {
             if(!this.oven.get(i).isEmpty()) {
@@ -186,11 +186,12 @@ public class PizzaOvenTileEntity extends BaseTileEntity implements IClearable, I
                 }
             }
         }
+
         if(itemsChanged) {
             /* Send updates to client */
             CompoundNBT compound = new CompoundNBT();
             this.writeItems(compound);
-            this.writeCookingTimes(compound);
+            this.writeCookingTime(compound);
             TileEntityUtil.sendUpdatePacket(this, super.save(compound));
         }
     }
@@ -346,11 +347,11 @@ public class PizzaOvenTileEntity extends BaseTileEntity implements IClearable, I
         if(compound.contains("RemainingFuel", Constants.NBT.TAG_INT)) {
             this.remainingFuel = compound.getInt("RemainingFuel");
         }
-        if(compound.contains("CookingTimes", Constants.NBT.TAG_INT_ARRAY)) {
-            this.cookingTime = compound.getInt("CookingTimes");
+        if(compound.contains("CookingTime", Constants.NBT.TAG_INT_ARRAY)) {
+            this.cookingTime = compound.getInt("CookingTime");
         }
-        if(compound.contains("CookingTotalTimes", Constants.NBT.TAG_INT_ARRAY)) {
-            this.cookingTime = compound.getInt("CookingTotalTimes");
+        if(compound.contains("CookingTotalTime", Constants.NBT.TAG_INT_ARRAY)) {
+            this.cookingTime = compound.getInt("CookingTotalTime");
         }
         if(compound.contains("Experience", Constants.NBT.TAG_INT_ARRAY)) {
             this.experience = compound.getFloat("Experience");
@@ -361,8 +362,8 @@ public class PizzaOvenTileEntity extends BaseTileEntity implements IClearable, I
     public CompoundNBT save(CompoundNBT compoundNBT) {
         this.writeItems(compoundNBT);
         this.writeFuel(compoundNBT);
-        this.writeCookingTimes(compoundNBT);
-        this.writeCookingTotalTimes(compoundNBT);
+        this.writeCookingTime(compoundNBT);
+        this.writeCookingTotalTime(compoundNBT);
         this.writeExperience(compoundNBT);
         this.writeRemainingFuel(compoundNBT);
         return super.save(compoundNBT);
@@ -383,13 +384,13 @@ public class PizzaOvenTileEntity extends BaseTileEntity implements IClearable, I
         return compound;
     }
 
-    private CompoundNBT writeCookingTimes(CompoundNBT compound) {
-        compound.putInt("CookingTimes", this.cookingTime);
+    private CompoundNBT writeCookingTime(CompoundNBT compound) {
+        compound.putInt("CookingTime", this.cookingTime);
         return compound;
     }
 
-    private CompoundNBT writeCookingTotalTimes(CompoundNBT compound) {
-        compound.putInt("CookingTotalTimes", this.cookingTotalTime);
+    private CompoundNBT writeCookingTotalTime(CompoundNBT compound) {
+        compound.putInt("CookingTotalTime", this.cookingTotalTime);
         return compound;
     }
 
