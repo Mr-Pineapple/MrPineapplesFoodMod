@@ -52,6 +52,10 @@ public class InventoryUtil {
         }
     }
 
+    /**
+     * Load items from a specific list
+     * @see net.minecraft.inventory.ItemStackHelper#loadAllItems(CompoundNBT, NonNullList)
+     */
     public static void loadAllItemsWithKey(String key, CompoundNBT tag, NonNullList<ItemStack> list) {
         ListNBT listTag = tag.getList(key, Constants.NBT.TAG_COMPOUND);
         for(int i = 0; i < listTag.size(); i++) {
@@ -63,10 +67,18 @@ public class InventoryUtil {
         }
     }
 
+    /**
+     * Saves items to a specific list & saves empty slots
+     * @see net.minecraft.inventory.ItemStackHelper#saveAllItems(CompoundNBT, NonNullList)
+     */
     public static CompoundNBT saveAllItemsWithKey(String key, CompoundNBT tag, NonNullList<ItemStack> list) {
         return saveAllItemsWithKey(key, tag, list, true);
     }
 
+    /**
+     * Saves items to a specific list
+     * @see net.minecraft.inventory.ItemStackHelper#saveAllItems(CompoundNBT, NonNullList, boolean)
+     */
     public static CompoundNBT saveAllItemsWithKey(String key, CompoundNBT tag, NonNullList<ItemStack> list, boolean saveEmpty) {
         ListNBT listTag = new ListNBT();
         for(int i = 0; i < list.size(); ++i) {
