@@ -169,17 +169,13 @@ public class PizzaOvenTileEntity extends BaseTileEntity implements IClearable, I
 
     private void cookContents() {
         boolean itemsChanged = false;
-        for(int i = 0; i < this.oven.size(); i++) {
-            if(!this.oven.get(i).isEmpty()) {
-                if(this.cookingTime < this.cookingTotalTime) {
-                    this.cookingTime++;
-                    if(this.cookingTime == this.cookingTotalTime) {
-                        Optional<PizzaOvenRecipe> optional = this.level.getRecipeManager().getRecipeFor(RecipeUtil.PIZZA_OVEN, new Inventory(this.oven.get(i)), this.level);
-                        if(optional.isPresent()) {
-                            this.oven.set(i, optional.get().getResultItem().copy());
-                        }
-                        itemsChanged = true;
-                    }
+        if(!this.oven.get(0).isEmpty()) {
+            if(this.cookingTime < this.cookingTotalTime) {
+                this.cookingTime++;
+                if(this.cookingTime == this.cookingTotalTime) {
+                    Optional<PizzaOvenRecipe> optional = this.level.getRecipeManager().getRecipeFor(RecipeUtil.PIZZA_OVEN, new Inventory(this.oven.get(0)), this.level);
+                    optional.ifPresent(pizzaOvenRecipe -> this.oven.set(0, pizzaOvenRecipe.getResultItem().copy()));
+                    itemsChanged = true;
                 }
             }
         }
@@ -193,21 +189,17 @@ public class PizzaOvenTileEntity extends BaseTileEntity implements IClearable, I
         }
     }
 
-    private void spawnParticles() {
+    private void createParticleEffects() {
         World world = this.getLevel();
-        if(world != null) {
-            if(this.isCooking() && this.remainingFuel > 0) {
-                double posX, posY, posZ;
-                posX = worldPosition.getX() + 0.1 + 0.8 * world.random.nextDouble();
-                posY = worldPosition.getY() + 0.25;
-                posZ = worldPosition.getZ() + 0.2 + 0.6 * world.random.nextDouble();
-                world.addParticle(ParticleTypes.FLAME, posX, posY, posZ, 0.0, 0.0, 0.0);
-                if(this.cookingTime == this.cookingTotalTime) {
-                    posX = worldPosition.getX() + 0.5;
-                    posY = worldPosition.getY() + .7;
-                    posZ = worldPosition.getZ() + 0.5;
-                    world.addParticle(ParticleTypes.SMOKE, posX, posY, posZ, 0.0D, 5.0E-4D, 0.0D);
-                }
+        double posX = worldPosition.getX() + 0.2 + 0.6 * world.random.nextDouble();
+        double posY = worldPosition.getY() + 0.2;
+        double posZ = worldPosition.getZ() + 0.2 + 0.6 * world.random.nextDouble();
+        if(this.isCooking() && this.remainingFuel > 0) {
+            world.addParticle(ParticleTypes.FLAME, posX, posY, posZ, 0.0, 0.0, 0.0);
+        }
+        if(!this.oven.get(0).isEmpty() && world.random.nextFloat() < 0.1F) {
+            if(this.cookingTime == this.cookingTotalTime) {
+                world.addParticle(ParticleTypes.SMOKE, worldPosition.getX() + 0.5, posY + 0.5, worldPosition.getZ() + 0.5, 0.0, 5.0E-4D, 0.0);
             }
         }
     }
