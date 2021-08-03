@@ -33,15 +33,14 @@ public class PizzaOvenTileEntity extends BaseTileEntity implements IClearable, I
 
     private final NonNullList<ItemStack> fuel = NonNullList.withSize(9, ItemStack.EMPTY);
     private final NonNullList<ItemStack> oven = NonNullList.withSize(1, ItemStack.EMPTY);
-    private int cookingTime;
-    private int cookingTotalTime;
-    private float experience;
+    private final int[] cookingTimes = new int[1];
+    private final int[] cookingTotalTimes = new int[1];
+    private final float[] experience = new float[1];
     private int remainingFuel = 0;
 
     public PizzaOvenTileEntity() {
         super(TileEntityRegistry.PIZZA_OVEN.get());
     }
-
 
     public NonNullList<ItemStack> getOven() {
         return this.oven;
@@ -51,13 +50,12 @@ public class PizzaOvenTileEntity extends BaseTileEntity implements IClearable, I
         return this.fuel;
     }
 
-
     public boolean addItem(ItemStack stack, int position, int cookTime, float experience) {
         if(this.oven.get(position).isEmpty()) {
             ItemStack copy = stack.copy();
             copy.setCount(1);
             this.oven.set(position, copy);
-            this.resetPosition(cookTime, experience);
+            this.resetPosition(position, cookTime, experience);
 
             /* Play place sound */
             World world = this.getLevel();
@@ -70,16 +68,16 @@ public class PizzaOvenTileEntity extends BaseTileEntity implements IClearable, I
         return false;
     }
 
-    private void resetPosition(int cookTime, float experience) {
-        this.cookingTime = 0;
-        this.cookingTotalTime = cookTime;
-        this.experience = experience;
+    private void resetPosition(int position, int cookTime, float experience) {
+        this.cookingTimes[position] = 0;
+        this.cookingTotalTimes[position] = cookTime;
+        this.experience[position] = experience;
 
         /* Send updates to client */
         CompoundNBT compound = new CompoundNBT();
         this.writeItems(compound);
-        this.writeCookingTime(compound);
-        this.writeCookingTotalTime(compound);
+        this.writeCookingTimes(compound);
+        this.writeCookingTotalTimes(compound);
         TileEntityUtil.sendUpdatePacket(this, super.save(compound));
     }
 
@@ -107,13 +105,15 @@ public class PizzaOvenTileEntity extends BaseTileEntity implements IClearable, I
             double posY = worldPosition.getY() + 1.0;
             double posZ = worldPosition.getZ() + 0.3 + 0.4 * (position / 2);
 
-            ItemEntity entity = new ItemEntity(this.level, posX, posY + 0.1, posZ, this.oven.get(position).copy());
-            this.level.addFreshEntity(entity);
+            /* Spawns the item */
+            this.level.addFreshEntity(new ItemEntity(this.level, posX, posY + 0.1, posZ, this.oven.get(position).copy()));
 
+            /* Remove the item from the inventory */
             this.oven.set(position, ItemStack.EMPTY);
 
-            if(this.cookingTime == this.cookingTotalTime) {
-                int amount = (int) experience;
+            /* Spawn experience orbs */
+            if(this.cookingTimes[position] == this.cookingTotalTimes[position]) {
+                int amount = (int) experience[position];
                 while(amount > 0) {
                     int splitAmount = ExperienceOrbEntity.getExperienceValue(amount);
                     amount -= splitAmount;
@@ -121,6 +121,7 @@ public class PizzaOvenTileEntity extends BaseTileEntity implements IClearable, I
                 }
             }
 
+            /* Send updates to client */
             CompoundNBT compound = new CompoundNBT();
             this.writeItems(compound);
             TileEntityUtil.sendUpdatePacket(this, super.save(compound));
@@ -149,7 +150,7 @@ public class PizzaOvenTileEntity extends BaseTileEntity implements IClearable, I
             }
 
             if(canCook && this.remainingFuel > 0) {
-                this.cookContents();
+                this.cookItems();
                 this.remainingFuel--;
                 if(this.remainingFuel == 0) {
                     /* Send updates to client */
@@ -164,27 +165,37 @@ public class PizzaOvenTileEntity extends BaseTileEntity implements IClearable, I
     }
 
     private boolean canCook() {
-        return !this.oven.get(0).isEmpty() && this.cookingTime != this.cookingTotalTime;
+        for(int i = 0; i < this.oven.size(); i++) {
+            if(!this.oven.get(i).isEmpty() && this.cookingTimes[i] != this.cookingTotalTimes[i]) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    private void cookContents() {
+    private void cookItems() {
         boolean itemsChanged = false;
-        if(!this.oven.get(0).isEmpty()) {
-            if(this.cookingTime < this.cookingTotalTime) {
-                this.cookingTime++;
-                if(this.cookingTime == this.cookingTotalTime) {
-                    Optional<PizzaOvenRecipe> optional = this.level.getRecipeManager().getRecipeFor(RecipeUtil.PIZZA_OVEN, new Inventory(this.oven.get(0)), this.level);
-                    optional.ifPresent(pizzaOvenRecipe -> this.oven.set(0, pizzaOvenRecipe.getResultItem().copy()));
-                    itemsChanged = true;
+        for(int i = 0; i < this.oven.size(); i++) {
+            if(!this.oven.get(i).isEmpty()) {
+                if(this.cookingTimes[i] < this.cookingTotalTimes[i]) {
+                    this.cookingTimes[i]++;
+                    if(this.cookingTimes[i] == this.cookingTotalTimes[i]) {
+                        Optional<PizzaOvenRecipe> optional = this.level.getRecipeManager().getRecipeFor(RecipeUtil.PIZZA_OVEN, new Inventory(this.oven.get(i)), this.level);
+                        if(optional.isPresent()) {
+                            this.oven.set(i, optional.get().getResultItem().copy());
+
+                        }
+
+                        itemsChanged = true;
+                    }
                 }
             }
         }
-
         if(itemsChanged) {
             /* Send updates to client */
             CompoundNBT compound = new CompoundNBT();
             this.writeItems(compound);
-            this.writeCookingTime(compound);
+            this.writeCookingTimes(compound);
             TileEntityUtil.sendUpdatePacket(this, super.save(compound));
         }
     }
@@ -205,7 +216,12 @@ public class PizzaOvenTileEntity extends BaseTileEntity implements IClearable, I
     }
 
     private boolean isCooking() {
-        return !this.oven.get(0).isEmpty() && (this.cookingTime != this.cookingTotalTime);
+        for(int i = 0; i < this.oven.size(); i++) {
+            if(!this.oven.get(i).isEmpty() && (this.cookingTimes[i] != this.cookingTotalTimes[i])) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public Optional<PizzaOvenRecipe> findMatchingRecipe(ItemStack input) {
@@ -247,11 +263,11 @@ public class PizzaOvenTileEntity extends BaseTileEntity implements IClearable, I
             ItemStack result = net.minecraft.inventory.ItemStackHelper.removeItem(this.oven, index, count);
 
             if(this.oven.get(index).isEmpty()) {
-                if(this.cookingTime == this.cookingTotalTime) {
+                if(this.cookingTimes[index] == this.cookingTotalTimes[index]) {
                     double posX = worldPosition.getX() + 0.3 + 0.4 * (index % 2);
                     double posY = worldPosition.getY() + 1.0;
                     double posZ = worldPosition.getZ() + 0.3 + 0.4 * (index / 2);
-                    int amount = (int) experience;
+                    int amount = (int) experience[index];
                     while(amount > 0) {
                         int splitAmount = ExperienceOrbEntity.getExperienceValue(amount);
                         amount -= splitAmount;
@@ -296,7 +312,7 @@ public class PizzaOvenTileEntity extends BaseTileEntity implements IClearable, I
             Optional<PizzaOvenRecipe> optional = this.level.getRecipeManager().getRecipeFor(RecipeUtil.PIZZA_OVEN, new Inventory(stack), this.level);
             if(optional.isPresent()) {
                 PizzaOvenRecipe recipe = optional.get();
-                this.resetPosition(recipe.getCookingTime(), recipe.getExperience());
+                this.resetPosition(finalIndex, recipe.getCookingTime(), recipe.getExperience());
             }
         }
         inventory.set(index, stack);
@@ -323,8 +339,8 @@ public class PizzaOvenTileEntity extends BaseTileEntity implements IClearable, I
     }
 
     @Override
-    public void load(BlockState blockState, CompoundNBT compound) {
-        super.load(blockState, compound);
+    public void load(BlockState blockstate, CompoundNBT compound) {
+        super.load(blockstate, compound);
         if(compound.contains("Oven", Constants.NBT.TAG_LIST)) {
             this.oven.clear();
             InventoryUtil.loadAllItemsWithKey("Oven", compound, this.oven);
@@ -336,14 +352,19 @@ public class PizzaOvenTileEntity extends BaseTileEntity implements IClearable, I
         if(compound.contains("RemainingFuel", Constants.NBT.TAG_INT)) {
             this.remainingFuel = compound.getInt("RemainingFuel");
         }
-        if(compound.contains("CookingTime", Constants.NBT.TAG_INT_ARRAY)) {
-            this.cookingTime = compound.getInt("CookingTime");
+        if(compound.contains("CookingTimes", Constants.NBT.TAG_INT_ARRAY)) {
+            int[] cookingTimes = compound.getIntArray("CookingTimes");
+            System.arraycopy(cookingTimes, 0, this.cookingTimes, 0, Math.min(this.cookingTotalTimes.length, cookingTimes.length));
         }
-        if(compound.contains("CookingTotalTime", Constants.NBT.TAG_INT_ARRAY)) {
-            this.cookingTime = compound.getInt("CookingTotalTime");
+        if(compound.contains("CookingTotalTimes", Constants.NBT.TAG_INT_ARRAY)) {
+            int[] cookingTimes = compound.getIntArray("CookingTotalTimes");
+            System.arraycopy(cookingTimes, 0, this.cookingTotalTimes, 0, Math.min(this.cookingTotalTimes.length, cookingTimes.length));
         }
         if(compound.contains("Experience", Constants.NBT.TAG_INT_ARRAY)) {
-            this.experience = compound.getFloat("Experience");
+            int[] experience = compound.getIntArray("Experience");
+            for(int i = 0; i < Math.min(this.experience.length, experience.length); i++) {
+                this.experience[i] = Float.intBitsToFloat(experience[i]);
+            }
         }
     }
 
@@ -351,8 +372,8 @@ public class PizzaOvenTileEntity extends BaseTileEntity implements IClearable, I
     public CompoundNBT save(CompoundNBT compoundNBT) {
         this.writeItems(compoundNBT);
         this.writeFuel(compoundNBT);
-        this.writeCookingTime(compoundNBT);
-        this.writeCookingTotalTime(compoundNBT);
+        this.writeCookingTimes(compoundNBT);
+        this.writeCookingTotalTimes(compoundNBT);
         this.writeExperience(compoundNBT);
         this.writeRemainingFuel(compoundNBT);
         return super.save(compoundNBT);
@@ -373,18 +394,22 @@ public class PizzaOvenTileEntity extends BaseTileEntity implements IClearable, I
         return compound;
     }
 
-    private CompoundNBT writeCookingTime(CompoundNBT compound) {
-        compound.putInt("CookingTime", this.cookingTime);
+    private CompoundNBT writeCookingTimes(CompoundNBT compound) {
+        compound.putIntArray("CookingTimes", this.cookingTimes);
         return compound;
     }
 
-    private CompoundNBT writeCookingTotalTime(CompoundNBT compound) {
-        compound.putInt("CookingTotalTime", this.cookingTotalTime);
+    private CompoundNBT writeCookingTotalTimes(CompoundNBT compound) {
+        compound.putIntArray("CookingTotalTimes", this.cookingTotalTimes);
         return compound;
     }
 
     private CompoundNBT writeExperience(CompoundNBT compound) {
-        compound.putFloat("Experience", this.experience);
+        int[] experience = new int[this.experience.length];
+        for(int i = 0; i < this.experience.length; i++) {
+            experience[i] = Float.floatToIntBits(experience[i]);
+        }
+        compound.putIntArray("Experience", experience);
         return compound;
     }
 
@@ -414,7 +439,7 @@ public class PizzaOvenTileEntity extends BaseTileEntity implements IClearable, I
         if(direction == Direction.DOWN) {
             if(index - this.fuel.size() >= 0) {
                 index -= this.fuel.size();
-                if(this.cookingTime == this.cookingTotalTime) {
+                if(this.cookingTimes[index] == this.cookingTotalTimes[index]) {
                     Optional<PizzaOvenRecipe> optional = this.level.getRecipeManager().getRecipeFor(RecipeUtil.PIZZA_OVEN, new Inventory(stack), this.level);
                     return !optional.isPresent();
                 }
