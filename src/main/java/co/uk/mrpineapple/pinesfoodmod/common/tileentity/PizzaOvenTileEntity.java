@@ -160,7 +160,7 @@ public class PizzaOvenTileEntity extends BaseTileEntity implements IClearable, I
                 }
             }
         } else {
-            createParticleEffects();
+            this.createParticleEffects();
         }
     }
 
@@ -202,15 +202,23 @@ public class PizzaOvenTileEntity extends BaseTileEntity implements IClearable, I
 
     private void createParticleEffects() {
         World world = this.getLevel();
-        double posX = worldPosition.getX() + 0.2 + 0.6 * world.random.nextDouble();
-        double posY = worldPosition.getY() + 0.2;
-        double posZ = worldPosition.getZ() + 0.2 + 0.6 * world.random.nextDouble();
-        if(this.isCooking() && this.remainingFuel > 0) {
-            world.addParticle(ParticleTypes.FLAME, posX, posY, posZ, 0.0, 0.0, 0.0);
-        }
-        if(!this.oven.get(0).isEmpty() && world.random.nextFloat() < 0.1F) {
-            if(this.cookingTime == this.cookingTotalTime) {
-                world.addParticle(ParticleTypes.SMOKE, worldPosition.getX() + 0.5, posY + 0.5, worldPosition.getZ() + 0.5, 0.0, 5.0E-4D, 0.0);
+        if(world != null) {
+            if(this.isCooking() && this.remainingFuel > 0) {
+                double posX = worldPosition.getX() + 0.1 + 0.8 * world.random.nextDouble();
+                double posY = worldPosition.getY() + 0.25;
+                double posZ = worldPosition.getZ() + 0.2 + 0.6 * world.random.nextDouble();
+                world.addParticle(ParticleTypes.FLAME, posX, posY, posZ, 0.0, 0.0, 0.0);
+            }
+
+            for(int i = 0; i < this.oven.size(); i++) {
+                if(!this.oven.get(i).isEmpty() && world.random.nextFloat() < 0.1F) {
+                    double posX = worldPosition.getX() + 0.5 + 0.2;
+                    double posY = worldPosition.getY() + .7;
+                    double posZ = worldPosition.getZ() + 0.5 + 0.2;
+                    if(this.cookingTimes[i] == this.cookingTotalTimes[i]) {
+                        world.addParticle(ParticleTypes.SMOKE, posX, posY, posZ, 0.0D, 0.0D, 0.0D);
+                    }
+                }
             }
         }
     }
