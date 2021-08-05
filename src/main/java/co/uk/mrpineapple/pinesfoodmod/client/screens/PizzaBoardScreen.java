@@ -12,6 +12,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -63,11 +64,11 @@ public class PizzaBoardScreen extends ContainerScreen<PizzaBoardScreenHandler> {
         this.imageWidth = 289;
         this.imageHeight = 202;
         this.materials = new ArrayList<>();
-        this.recipes = RecipeUtil.Pizza.getAll(playerInventory.player.level);
-        if(oldRecipesSize != this.recipes.size()) {
+        recipes = RecipeUtil.Pizza.getAll(playerInventory.player.level);
+        if(oldRecipesSize != recipes.size()) {
             currentIndex = 0;
             previousIndex = 0;
-            oldRecipesSize = this.recipes.size();
+            oldRecipesSize = recipes.size();
         }
     }
 
@@ -78,13 +79,13 @@ public class PizzaBoardScreen extends ContainerScreen<PizzaBoardScreenHandler> {
         int startY = (this.height - this.imageHeight) / 2;
         this.addButton(new Button(startX + 188, startY + 168, 15, 20, new StringTextComponent("<"), button -> {
             if(currentIndex - 1 < 0) {
-                this.fetchItem(this.recipes.size() - 1);
+                this.fetchItem(recipes.size() - 1);
             } else {
                 this.fetchItem(currentIndex - 1);
             }
         }));
         this.addButton(new Button(startX + 262, startY + 168, 15, 20, new StringTextComponent(">"), button -> {
-            if(currentIndex + 1 >= this.recipes.size()) {
+            if(currentIndex + 1 >= recipes.size()) {
                 this.fetchItem(0);
             } else {
                 this.fetchItem(currentIndex + 1);
@@ -187,12 +188,12 @@ public class PizzaBoardScreen extends ContainerScreen<PizzaBoardScreenHandler> {
         this.blit(stack, startX + 176, startY + 15 - 6, 20, 78, 103, 80); //Top Display Connector
         this.blit(stack, startX + 176 + 100 + 3, startY + 15 - 6, 253, 78, 3, 80); //Top Display Right
 
-        PizzaRecipe recipe = this.recipes.get(currentIndex);
+        PizzaRecipe recipe = recipes.get(currentIndex);
         ItemStack currentItem = recipe.getItem();
         StringBuilder builder = new StringBuilder(currentItem.getHoverName().getString());
         String outputName = builder.toString();
 
-        this.drawCenteredString(stack, this.font, outputName, startX + 232, startY + 112, Color.WHITE.getRGB());
+        drawCenteredString(stack, this.font, outputName, startX + 232, startY + 112, Color.WHITE.getRGB());
 
         RenderSystem.pushMatrix(); {
             RenderSystem.translatef(startX + 230, startY + 152, 100);
@@ -277,8 +278,7 @@ public class PizzaBoardScreen extends ContainerScreen<PizzaBoardScreenHandler> {
 
     public static ItemStack currentItemShowing() {
         PizzaRecipe recipe = PizzaBoardScreen.recipes.get(currentIndex);
-        ItemStack currentItem = recipe.getItem();
-        return currentItem;
+        return recipe.getItem();
     }
 
     public static class InputItem {
