@@ -25,6 +25,8 @@ public class ClientEvents {
         RenderTypeLookup.setRenderLayer(BlockRegistry.BLUEBERRY.get(), cutoutPredicate);
         RenderTypeLookup.setRenderLayer(BlockRegistry.PEPPER.get(), cutoutPredicate);
 
+        RenderTypeLookup.setRenderLayer(BlockRegistry.PIZZA_OVEN.get(), cutoutPredicate);
+
         Screens.screens();
 
         ClientRegistry.bindTileEntityRenderer(TileEntityRegistry.PIZZA_OVEN.get(), PizzaOvenTileEntityRenderer::new);
