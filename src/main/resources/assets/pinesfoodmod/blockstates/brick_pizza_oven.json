@@ -1,13 +1,9 @@
 {
   "variants": {
-    "facing=north,cooking=true": { "model": "pinesfoodmod:block/brick_pizza_oven_closed" },
-    "facing=east,cooking=true": { "model": "pinesfoodmod:block/brick_pizza_oven_closed", "y": 90  },
-    "facing=south,cooking=true": { "model": "pinesfoodmod:block/brick_pizza_oven_closed", "y": 180 },
-    "facing=west,cooking=true": { "model": "pinesfoodmod:block/brick_pizza_oven_closed", "y": 270 },
-    "facing=north,cooking=false": { "model": "pinesfoodmod:block/brick_pizza_oven" },
-    "facing=east,cooking=false": { "model": "pinesfoodmod:block/brick_pizza_oven", "y": 90  },
-    "facing=south,cooking=false": { "model": "pinesfoodmod:block/brick_pizza_oven", "y": 180 },
-    "facing=west,cooking=false": { "model": "pinesfoodmod:block/brick_pizza_oven", "y": 270 }
+    "facing=north": { "model": "pinesfoodmod:block/brick_pizza_oven" },
+    "facing=east": { "model": "pinesfoodmod:block/brick_pizza_oven", "y": 90  },
+    "facing=south": { "model": "pinesfoodmod:block/brick_pizza_oven", "y": 180 },
+    "facing=west": { "model": "pinesfoodmod:block/brick_pizza_oven", "y": 270 }
 
   }
 }

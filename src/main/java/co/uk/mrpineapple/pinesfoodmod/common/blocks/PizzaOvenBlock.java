@@ -31,11 +31,10 @@ import java.util.Optional;
 
 public class PizzaOvenBlock extends Block implements ISidedInventoryProvider {
     public static final DirectionProperty FACING = HorizontalBlock.FACING;
-    public static final BooleanProperty COOKING = BooleanProperty.create("cooking");
 
     public PizzaOvenBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.getStateDefinition().any().setValue(FACING, Direction.NORTH).setValue(COOKING, false));
+        this.registerDefaultState(this.getStateDefinition().any().setValue(FACING, Direction.NORTH));
     }
 
     @Override
@@ -133,6 +132,6 @@ public class PizzaOvenBlock extends Block implements ISidedInventoryProvider {
     @Override
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
-        builder.add(FACING, COOKING);
+        builder.add(FACING);
     }
 }
