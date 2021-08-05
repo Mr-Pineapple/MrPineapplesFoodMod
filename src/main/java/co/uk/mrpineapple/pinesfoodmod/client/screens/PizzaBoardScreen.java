@@ -195,29 +195,7 @@ public class PizzaBoardScreen extends ContainerScreen<PizzaBoardScreenHandler> {
 
         drawCenteredString(stack, this.font, outputName, startX + 232, startY + 112, Color.WHITE.getRGB());
 
-        RenderSystem.pushMatrix(); {
-            RenderSystem.translatef(startX + 230, startY + 152, 100);
-            RenderSystem.scalef(80F, -80F, 80F);
-            RenderSystem.rotatef(-45, -90, -180, -45);
-            RenderSystem.rotatef(Minecraft.getInstance().player.tickCount + partialTicks, 0, 1, 0);
-
-            RenderSystem.enableRescaleNormal();
-            RenderSystem.enableAlphaTest();
-            RenderSystem.defaultAlphaFunc();
-            RenderSystem.enableBlend();
-            RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-            RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-
-            MatrixStack matrixStack = new MatrixStack();
-            IRenderTypeBuffer.Impl buffer = this.minecraft.renderBuffers().bufferSource();
-
-            Minecraft.getInstance().getItemRenderer().render(currentItem, ItemCameraTransforms.TransformType.GROUND, false, matrixStack, buffer, 15728880, OverlayTexture.NO_OVERLAY, RenderUtil.getModel(currentItem.getItem()));
-            buffer.endBatch();
-
-            RenderSystem.disableAlphaTest();
-            RenderSystem.disableRescaleNormal();
-        }
-        RenderSystem.popMatrix();
+        
 
         this.filteredMaterials = this.getMaterials();
         for(int x = 0; x < 3; x++) {
