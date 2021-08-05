@@ -189,13 +189,23 @@ public class PizzaBoardScreen extends ContainerScreen<PizzaBoardScreenHandler> {
         this.blit(stack, startX + 176 + 100 + 3, startY + 15 - 6, 253, 78, 3, 80); //Top Display Right
 
         PizzaRecipe recipe = recipes.get(currentIndex);
-        ItemStack currentItem = recipe.getItem();
-        StringBuilder builder = new StringBuilder(currentItem.getHoverName().getString());
+        StringBuilder builder = new StringBuilder(recipe.getItem().getHoverName().getString());
         String outputName = builder.toString();
 
-        drawCenteredString(stack, this.font, outputName, startX + 232, startY + 112, Color.WHITE.getRGB());
+        String raw = outputName.substring(0, 3);
+        String pizza = outputName.substring(outputName.length() - 5, outputName.length());
+        int textXValue = startX + 232;
 
-        
+        if(raw.equalsIgnoreCase("raw")) {
+            outputName = outputName.substring(4);
+            textXValue = startX + 231;
+            if(pizza.equalsIgnoreCase("pizza")) {
+                outputName = outputName.substring(0, outputName.length() - 5);
+                textXValue = startX + 233;
+            }
+        }
+
+        drawCenteredString(stack, this.font, outputName, textXValue, startY + 112, Color.WHITE.getRGB());
 
         this.filteredMaterials = this.getMaterials();
         for(int x = 0; x < 3; x++) {
