@@ -213,7 +213,7 @@ public class PizzaOvenTileEntity extends BaseTileEntity implements IClearable, I
 
             for(int i = 0; i < this.oven.size(); i++) {
                 if(!this.oven.get(i).isEmpty() && world.random.nextFloat() < 0.1F) {
-                    double posY = worldPosition.getY() + .7;
+                    double posY = worldPosition.getY() + .65;
                     if(this.cookingTimes[i] == this.cookingTotalTimes[i]) {
                         world.addParticle(ParticleTypes.SMOKE, posX, posY, posZ, 0.0D, 0.0D, 0.0D);
                     }
