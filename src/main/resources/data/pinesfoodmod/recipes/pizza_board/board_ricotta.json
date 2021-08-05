@@ -1,0 +1,25 @@
+{
+    "type": "pinesfoodmod:pizza_board",
+    "result": {
+        "item": "pinesfoodmod:pizza_raw_ricotta",
+        "count": 1
+    },
+    "inputs": [
+        {
+            "item": "pinesfoodmod:pizza_raw_base",
+            "count": 1
+        },
+        {
+            "item": "pinesfoodmod:salt",
+            "count": 2
+        },
+        {
+            "item": "pinesfoodmod:tomato",
+            "count": 3
+        },
+        {
+            "item": "pinesfoodmod:ricotta_cheese",
+            "count": 5
+        }
+    ]
+}

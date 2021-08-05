@@ -1,0 +1,33 @@
+{
+    "type": "pinesfoodmod:pizza_board",
+    "result": {
+        "item": "pinesfoodmod:pizza_raw_vegetable",
+        "count": 1
+    },
+    "inputs": [
+        {
+            "item": "pinesfoodmod:pizza_raw_base",
+            "count": 1
+        },
+        {
+            "item": "pinesfoodmod:salt",
+            "count": 2
+        },
+        {
+            "item": "pinesfoodmod:pepper_bush",
+            "count": 3
+        },
+        {
+            "item": "minecraft:brown_mushroom",
+            "count": 3
+        },
+        {
+            "item": "pinesfoodmod:tomato",
+            "count": 2
+        },
+        {
+            "item": "pinesfoodmod:onion",
+            "count": 2
+        }
+    ]
+}

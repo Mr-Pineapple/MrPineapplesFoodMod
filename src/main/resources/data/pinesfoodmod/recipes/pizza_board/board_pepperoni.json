@@ -1,0 +1,29 @@
+{
+    "type": "pinesfoodmod:pizza_board",
+    "result": {
+        "item": "pinesfoodmod:pizza_raw_pepperoni",
+        "count": 1
+    },
+    "inputs": [
+        {
+            "item": "pinesfoodmod:pizza_raw_base",
+            "count": 1
+        },
+        {
+            "item": "pinesfoodmod:pepperoni",
+            "count": 8
+        },
+        {
+            "item": "pinesfoodmod:salt",
+            "count": 2
+        },
+        {
+            "item": "minecraft:brown_mushroom",
+            "count": 3
+        },
+        {
+            "item": "pinesfoodmod:tomato",
+            "count": 2
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+{
+    "type": "pinesfoodmod:pizza_board",
+    "result": {
+        "item": "pinesfoodmod:ricotta_cheese",
+        "count": 1
+    },
+    "inputs": [
+        {
+            "item": "pinesfoodmod:milk_bottle",
+            "count": 1
+        },
+        {
+            "item": "minecraft:bowl",
+            "count": 1
+        }
+    ]
+}

@@ -1,0 +1,25 @@
+{
+    "type": "pinesfoodmod:pizza_board",
+    "result": {
+        "item": "pinesfoodmod:pizza_raw_base",
+        "count": 1
+    },
+    "inputs": [
+        {
+            "item": "pinesfoodmod:yeast",
+            "count": 2
+        },
+        {
+            "item": "pinesfoodmod:flour",
+            "count": 5
+        },
+        {
+            "item": "pinesfoodmod:salt",
+            "count": 3
+        },
+        {
+            "item": "pinesfoodmod:olive_oil",
+            "count": 1
+        }
+    ]
+}
