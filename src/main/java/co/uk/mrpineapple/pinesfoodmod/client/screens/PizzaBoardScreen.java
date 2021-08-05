@@ -134,7 +134,7 @@ public class PizzaBoardScreen extends ContainerScreen<PizzaBoardScreenHandler> {
         ItemStack stack = recipe.getItem();
 
         this.materials.clear();
-        this.displayProperty = RenderUtil.getModel(stack.getItem()).getTransforms().getTransform(ItemCameraTransforms.TransformType.GROUND);
+        this.displayProperty = RenderUtil.getModelFromItem(stack.getItem()).getTransforms().getTransform(ItemCameraTransforms.TransformType.GROUND);
 
         List<ItemStack> materials = recipe.getInputs();
         if(materials != null) {
@@ -189,6 +189,7 @@ public class PizzaBoardScreen extends ContainerScreen<PizzaBoardScreenHandler> {
         this.blit(stack, startX + 176 + 100 + 3, startY + 15 - 6, 253, 78, 3, 80); //Top Display Right
 
         PizzaRecipe recipe = recipes.get(currentIndex);
+        ItemStack currentItem = recipe.getItem();
         StringBuilder builder = new StringBuilder(recipe.getItem().getHoverName().getString());
         String outputName = builder.toString();
 
@@ -206,6 +207,33 @@ public class PizzaBoardScreen extends ContainerScreen<PizzaBoardScreenHandler> {
         }
 
         drawCenteredString(stack, this.font, outputName, textXValue, startY + 112, Color.WHITE.getRGB());
+
+        if(pizza.equalsIgnoreCase("pizza") || pizza.equalsIgnoreCase(" base")) {
+            RenderSystem.pushMatrix();
+            {
+                RenderSystem.translatef(startX + 230, startY + 132, 100);
+                RenderSystem.scalef(80F, -80F, 80F);
+                RenderSystem.rotatef(-45, -90, -180, -45);
+                RenderSystem.rotatef(Minecraft.getInstance().player.tickCount + partialTicks, 0, 1, 0);
+
+                RenderSystem.enableRescaleNormal();
+                RenderSystem.enableAlphaTest();
+                RenderSystem.defaultAlphaFunc();
+                RenderSystem.enableBlend();
+                RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+                RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+
+                MatrixStack matrixStack = new MatrixStack();
+                IRenderTypeBuffer.Impl buffer = this.minecraft.renderBuffers().bufferSource();
+
+                Minecraft.getInstance().getItemRenderer().render(recipe.getItem(), ItemCameraTransforms.TransformType.GROUND, false, matrixStack, buffer, 15728880, OverlayTexture.NO_OVERLAY, RenderUtil.getModelFromItemStack(recipe.getItem()));
+                buffer.endBatch();
+
+                RenderSystem.disableAlphaTest();
+                RenderSystem.disableRescaleNormal();
+            }
+            RenderSystem.popMatrix();
+        }
 
         this.filteredMaterials = this.getMaterials();
         for(int x = 0; x < 3; x++) {
