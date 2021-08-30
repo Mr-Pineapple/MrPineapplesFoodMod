@@ -72,6 +72,7 @@ public class ItemRegistry {
     public static final RegistryObject<Item> YEAST = register("yeast", () -> new Item(new Item.Properties().tab(PinesFoodMod.TAB)));
     public static final RegistryObject<Item> SALT = register("salt", () -> new Item(new Item.Properties().tab(PinesFoodMod.TAB)));
     public static final RegistryObject<Item> OLIVE_OIL = register("olive_oil", () -> new Item(new Item.Properties().tab(PinesFoodMod.TAB)));
+    public static final RegistryObject<Item> KINFE = register("cutting_knife", () -> new SwordItem(ItemTier.WOOD, 3, -2.4f, new Item.Properties().tab(PinesFoodMod.TAB)));
 
     public static RegistryObject<BlockItem> register(String name, RegistryObject<Block> block, Food food) {
         RegistryObject<BlockItem> item = ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(PinesFoodMod.TAB).food(food)));
