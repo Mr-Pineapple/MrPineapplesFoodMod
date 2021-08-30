@@ -6,5 +6,6 @@
       "block": "minecraft:oak_leaves"
     }
   ],
-  "chance": 5
+  "chance": 5,
+  "drop": "pinesfoodmod:green_apple"
 }
