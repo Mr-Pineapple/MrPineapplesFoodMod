@@ -1,6 +1,7 @@
 {
   "replace": false,
   "entries": [
-    "pinesfoodmod:test_modifier"
+    "pinesfoodmod:green_apple_from_oak_leaves",
+    "pinesfoodmod:green_apple_from_dark_oak_leaves"
   ]
 }

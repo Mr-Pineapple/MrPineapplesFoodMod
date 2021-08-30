@@ -1,0 +1,11 @@
+{
+  "type": "pinesfoodmod:drop_from_chance",
+  "conditions": [
+    {
+      "condition": "block_state_property",
+      "block": "minecraft:dark_oak_leaves"
+    }
+  ],
+  "chance": 200,
+  "drop": "pinesfoodmod:green_apple"
+}
