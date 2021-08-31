@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "open=true,facing=south": { "model": "pinesfoodmod:block/pizza/boxes/pizza_box_empty_open" },
+    "open=true,facing=west": { "model": "pinesfoodmod:block/pizza/boxes/pizza_box_empty_open", "y": 90 },
+    "open=true,facing=north": { "model": "pinesfoodmod:block/pizza/boxes/pizza_box_empty_open", "y": 180 },
+    "open=true,facing=east": { "model": "pinesfoodmod:block/pizza/boxes/pizza_box_empty_open", "y": 270 },
+    "open=false,facing=south": { "model": "pinesfoodmod:block/pizza/boxes/pizza_box_empty_closed" },
+    "open=false,facing=west": { "model": "pinesfoodmod:block/pizza/boxes/pizza_box_empty_closed", "y": 90 },
+    "open=false,facing=north": { "model": "pinesfoodmod:block/pizza/boxes/pizza_box_empty_closed", "y": 180 },
+    "open=false,facing=east": { "model": "pinesfoodmod:block/pizza/boxes/pizza_box_empty_closed", "y": 270 }
+  }
+}
