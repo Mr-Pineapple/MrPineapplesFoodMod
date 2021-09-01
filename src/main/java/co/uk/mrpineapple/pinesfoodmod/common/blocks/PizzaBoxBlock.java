@@ -106,19 +106,19 @@ public class PizzaBoxBlock extends ContainerBlock {
         }
     }
 
-    @Override
-    public void playerWillDestroy(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        TileEntity tileEntity = world.getBlockEntity(pos);
-        if(tileEntity instanceof PizzaBoxTileEntity) {
-            PizzaBoxTileEntity pizzaBoxTileEntity = (PizzaBoxTileEntity) tileEntity;
-            if(world.isClientSide && player.isCreative() && !pizzaBoxTileEntity.isEmpty()) {
-                return;
-            } else {
-                pizzaBoxTileEntity.unpackLootTable(player);
-            }
-        }
-        super.playerWillDestroy(world, pos, state, player);
-    }
+//    @Override
+//    public void playerWillDestroy(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+//        TileEntity tileEntity = world.getBlockEntity(pos);
+//        if(tileEntity instanceof PizzaBoxTileEntity) {
+//            PizzaBoxTileEntity pizzaBoxTileEntity = (PizzaBoxTileEntity) tileEntity;
+//            if(world.isClientSide && player.isCreative() && !pizzaBoxTileEntity.isEmpty()) {
+//                return;
+//            } else {
+//                pizzaBoxTileEntity.unpackLootTable(player);
+//            }
+//        }
+//        super.playerWillDestroy(world, pos, state, player);
+//    }
 
     @Override
     public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {

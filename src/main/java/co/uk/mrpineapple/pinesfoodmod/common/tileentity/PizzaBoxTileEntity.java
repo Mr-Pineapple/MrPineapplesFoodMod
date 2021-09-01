@@ -8,17 +8,14 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
-import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.LockableLootTileEntity;
-import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraftforge.common.util.Constants;
 
 import javax.annotation.Nullable;
 import java.util.stream.IntStream;
@@ -26,23 +23,16 @@ import java.util.stream.IntStream;
 /**
  * Author: Mr. Pineapple
  */
-public class PizzaBoxTileEntity extends LockableLootTileEntity implements ISidedInventory {
+public class PizzaBoxTileEntity extends BaseTileEntity implements ISidedInventory {
     private static final int[] SLOTS = IntStream.range(0, 1).toArray();
-    protected NonNullList<ItemStack> items = NonNullList.withSize(1, ItemStack.EMPTY);
-    private int openCount;
+    private final NonNullList<ItemStack> items = NonNullList.withSize(1, ItemStack.EMPTY);
 
     public PizzaBoxTileEntity() {
         super(TileEntityRegistry.PIZZA_BOX.get());
     }
 
-    @Override
-    protected ITextComponent getDefaultName() {
-        return null;
-    }
-
-    @Override
-    protected Container createMenu(int p_213906_1_, PlayerInventory p_213906_2_) {
-        return null;
+    public NonNullList<ItemStack> getItems() {
+        return this.items;
     }
 
     public boolean addItem(ItemStack stack) {
@@ -61,8 +51,7 @@ public class PizzaBoxTileEntity extends LockableLootTileEntity implements ISided
     }
 
     public void removeItem(int position, PlayerEntity player) {
-        if(!this.items.get(position).isEmpty())
-        {
+        if(!this.items.get(position).isEmpty()) {
             /* Spawns the item */
             ItemStack stack = this.items.get(position).copy();
             if(player.inventory.getFreeSlot() != -1) {
@@ -84,7 +73,7 @@ public class PizzaBoxTileEntity extends LockableLootTileEntity implements ISided
         }
     }
 
-    protected ItemStack getItemsInMainSlot() {
+    public ItemStack getItemsInMainSlot() {
         return this.items.get(0);
     }
 
@@ -94,18 +83,39 @@ public class PizzaBoxTileEntity extends LockableLootTileEntity implements ISided
     }
 
     @Override
-    protected NonNullList<ItemStack> getItems() {
-        return this.items;
+    public ItemStack getItem(int index) {
+        return this.items.get(index);
     }
 
     @Override
-    protected void setItems(NonNullList<ItemStack> items) {
-        this.items = items;
+    public ItemStack removeItem(int index, int count) {
+        ItemStack result = ItemStackHelper.removeItem(this.items, index, count);
+
+        CompoundNBT compoundTag = new CompoundNBT();
+        this.writeItem(compoundTag);
+        TileEntityUtil.sendUpdatePacket(this, super.save(compoundTag));
+
+        return result;
     }
 
-    private CompoundNBT writeItem(CompoundNBT compoundTag) {
-        InventoryUtil.saveAllItemsWithKey("Items", compoundTag, this.items, true);
-        return compoundTag;
+    @Override
+    public ItemStack removeItemNoUpdate(int index) {
+        return ItemStackHelper.takeItem(this.items, index);
+    }
+
+    @Override
+    public void setItem(int index, ItemStack stack) {
+        NonNullList<ItemStack> inventory = this.items;
+        inventory.set(index, stack);
+
+        CompoundNBT compoundTag = new CompoundNBT();
+        this.writeItem(compoundTag);
+        TileEntityUtil.sendUpdatePacket(this, super.save(compoundTag));
+    }
+
+    @Override
+    public boolean stillValid(PlayerEntity player) {
+        return this.level.getBlockEntity(this.worldPosition) == this && player.distanceToSqr(this.worldPosition.getX() + 0.5, this.worldPosition.getY() + 0.5, this.worldPosition.getZ() + 0.5) <= 64;
     }
 
     @Override
@@ -130,28 +140,27 @@ public class PizzaBoxTileEntity extends LockableLootTileEntity implements ISided
     }
 
     @Override
-    public void load(BlockState state, CompoundNBT compoundTag) {
-        super.load(state, compoundTag);
-        this.loadFromTag(compoundTag);
+    public void clearContent() {
+        this.items.clear();
     }
 
     @Override
     public CompoundNBT save(CompoundNBT compoundTag) {
-        super.save(compoundTag);
-        return this.saveToTag(compoundTag);
+        this.writeItem(compoundTag);
+        return super.save(compoundTag);
     }
 
-    private void loadFromTag(CompoundNBT compoundTag) {
-        this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        if (!this.tryLoadLootTable(compoundTag) && compoundTag.contains("Items", 9)) {
-            ItemStackHelper.loadAllItems(compoundTag, this.items);
-        }
-    }
-
-    private CompoundNBT saveToTag(CompoundNBT compoundTag) {
-        if(!this.trySaveLootTable(compoundTag)) {
-            ItemStackHelper.saveAllItems(compoundTag, this.items, true);
-        }
+    private CompoundNBT writeItem(CompoundNBT compoundTag) {
+        InventoryUtil.saveAllItemsWithKey("Items", compoundTag, this.items, true);
         return compoundTag;
+    }
+
+    @Override
+    public void load(BlockState state, CompoundNBT compoundTag) {
+        super.load(state, compoundTag);
+        if(compoundTag.contains("Items", Constants.NBT.TAG_LIST)) {
+            this.items.clear();
+            InventoryUtil.loadAllItemsWithKey("Items", compoundTag, this.items);
+        }
     }
 }
