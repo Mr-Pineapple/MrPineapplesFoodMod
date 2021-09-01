@@ -1,5 +1,6 @@
 package co.uk.mrpineapple.pinesfoodmod.client;
 
+import co.uk.mrpineapple.pinesfoodmod.client.renderer.tileentity.PizzaBoxTileEntityRenderer;
 import co.uk.mrpineapple.pinesfoodmod.client.renderer.tileentity.PizzaOvenTileEntityRenderer;
 import co.uk.mrpineapple.pinesfoodmod.core.registry.BlockRegistry;
 import co.uk.mrpineapple.pinesfoodmod.core.registry.TileEntityRegistry;
@@ -30,5 +31,6 @@ public class ClientEvents {
         Screens.screens();
 
         ClientRegistry.bindTileEntityRenderer(TileEntityRegistry.PIZZA_OVEN.get(), PizzaOvenTileEntityRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(TileEntityRegistry.PIZZA_BOX.get(), PizzaBoxTileEntityRenderer::new);
     }
 }
