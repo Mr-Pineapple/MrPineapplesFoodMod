@@ -1,5 +1,6 @@
 package co.uk.mrpineapple.pinesfoodmod.client.renderer.tileentity;
 
+import co.uk.mrpineapple.pinesfoodmod.client.RenderUtil;
 import co.uk.mrpineapple.pinesfoodmod.common.tileentity.PizzaBoxTileEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;
@@ -34,7 +35,7 @@ public class PizzaBoxTileEntityRenderer extends TileEntityRenderer<PizzaBoxTileE
             matrices.scale(0.95f, 1.0f, 0.95f);
             matrices.translate(0.525D, -0.077D, 0.525D);
             matrices.mulPose(Vector3f.XP.rotationDegrees(90F));
-            Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemCameraTransforms.TransformType.FIXED, light, OverlayTexture.NO_OVERLAY, matrices, buffer);
+            RenderUtil.renderItem(stack, matrices, buffer, light);
             matrices.popPose();
         }
     }

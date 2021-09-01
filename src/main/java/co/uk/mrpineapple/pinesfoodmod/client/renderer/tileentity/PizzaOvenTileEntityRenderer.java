@@ -1,5 +1,6 @@
 package co.uk.mrpineapple.pinesfoodmod.client.renderer.tileentity;
 
+import co.uk.mrpineapple.pinesfoodmod.client.RenderUtil;
 import co.uk.mrpineapple.pinesfoodmod.common.blocks.PizzaOvenBlock;
 import co.uk.mrpineapple.pinesfoodmod.common.tileentity.PizzaOvenTileEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -35,7 +36,7 @@ public class PizzaOvenTileEntityRenderer extends TileEntityRenderer<PizzaOvenTil
                 matrixStack.translate(0, -0.1, 0.0);
                 matrixStack.scale(0.9F, 0.9F, 0.9F);
                 matrixStack.mulPose(Vector3f.ZP.rotationDegrees(90F));
-                Minecraft.getInstance().getItemRenderer().renderStatic(ovenStack, ItemCameraTransforms.TransformType.FIXED, combinedLight, combinedOverlay, matrixStack, renderBuffer);
+            RenderUtil.renderItem(ovenStack, matrixStack, renderBuffer, combinedLight);
             matrixStack.popPose();
         }
 
@@ -51,7 +52,7 @@ public class PizzaOvenTileEntityRenderer extends TileEntityRenderer<PizzaOvenTil
                     matrixStack.mulPose(Vector3f.YP.rotationDegrees(10F));
                     matrixStack.mulPose(Vector3f.ZP.rotationDegrees(10F));
                     matrixStack.mulPose(Vector3f.XP.rotationDegrees(5F));
-                    Minecraft.getInstance().getItemRenderer().renderStatic(fuelStack, ItemCameraTransforms.TransformType.FIXED, combinedLight, combinedOverlay, matrixStack, renderBuffer);
+                    RenderUtil.renderItem(fuelStack, matrixStack, renderBuffer, combinedLight);
                 matrixStack.popPose();
             }
         }
